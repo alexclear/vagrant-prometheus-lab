@@ -1,0 +1,5 @@
+/ansible/site.retry
+/ubuntu-bionic-18.04-cloudimg-console.log
+/ubuntu-xenial-16.04-cloudimg-console.log
+*.pyc
+/.vagrant

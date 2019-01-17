@@ -1,0 +1,13 @@
+[prom1]
+prom1 ansible_host=172.16.137.2
+
+[prom2]
+prom2 ansible_host=172.16.137.3
+
+[prom3]
+prom3 ansible_host=172.16.137.4
+
+[node-exporters:children]
+prom1
+prom2
+prom3

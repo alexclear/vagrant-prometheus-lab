@@ -1,0 +1,9 @@
+[submodule "ansible/roles/prometheus"]
+	path = ansible/roles/prometheus
+	url = https://github.com/kofonfor/ansible-role-prometheus.git
+[submodule "ansible/roles/runit"]
+	path = ansible/roles/runit
+	url = https://github.com/kofonfor/ansible-role-runit.git
+[submodule "ansible/roles/systemd-service-unit"]
+	path = ansible/roles/systemd-service-unit
+	url = https://github.com/kofonfor/ansible-role-systemd-service-unit.git
