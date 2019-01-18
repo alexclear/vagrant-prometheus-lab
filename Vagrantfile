@@ -17,6 +17,7 @@ Vagrant.configure("2") do |config|
     prom1.vm.hostname = "prom1"
     prom1.vm.network "private_network", ip: $PROM1_IP
     prom1.vm.network "forwarded_port", guest: 9090, host: 9090
+    prom1.vm.network "forwarded_port", guest: 9145, host: 9145
 
     prom1.vm.provider :virtualbox do |v, override|
       v.gui = false

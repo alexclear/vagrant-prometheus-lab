@@ -8,3 +8,5 @@
   roles:
   - role: docker-io
   - role: prometheus/prometheus-container
+  - role: grafana-container
+  - role: nginx

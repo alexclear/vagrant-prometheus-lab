@@ -13,3 +13,9 @@
 [submodule "ansible/roles/docker.ubuntu"]
 	path = ansible/roles/docker.ubuntu
 	url = https://github.com/angstwad/docker.ubuntu.git
+[submodule "ansible/roles/grafana-container"]
+	path = ansible/roles/grafana-container
+	url = https://github.com/kofonfor/ansible-role-grafana-container.git
+[submodule "ansible/roles/nginx"]
+	path = ansible/roles/nginx
+	url = https://github.com/kofonfor/ansible-role-nginx.git
