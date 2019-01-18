@@ -11,3 +11,8 @@ k8s_prometheus_jobs:
         port: 9100
       - host: 172.16.137.4
         port: 9100
+  - name: nginxes
+    metrics_path: "/metrics"
+    targets:
+      - host: 172.16.137.2
+        port: 9145
