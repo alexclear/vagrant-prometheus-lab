@@ -1,3 +1,12 @@
 ext_prometheus_data_volume: /var/lib/docker-extvols/prometheus/data
 ext_prometheus_config_volume: /var/lib/docker-extvols/prometheus/config
-k8s_prometheus_jobs: []
+k8s_prometheus_jobs:
+  - name: nodes
+    metrics_path: "/metrics"
+    targets:
+      - host: 172.16.137.2
+        port: 9100
+      - host: 172.16.137.3
+        port: 9100
+      - host: 172.16.137.4
+        port: 9100
