@@ -2,3 +2,9 @@
   become: yes
   roles:
   - role: prometheus/node_exporter
+
+- hosts: prom-server
+  become: yes
+  roles:
+  - role: docker-io
+  - role: prometheus/prometheus-container

@@ -11,3 +11,6 @@ prom3 ansible_host=172.16.137.4
 prom1
 prom2
 prom3
+
+[prom-server:children]
+prom1

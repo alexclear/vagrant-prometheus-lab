@@ -7,3 +7,9 @@
 [submodule "ansible/roles/systemd-service-unit"]
 	path = ansible/roles/systemd-service-unit
 	url = https://github.com/kofonfor/ansible-role-systemd-service-unit.git
+[submodule "ansible/roles/docker-io"]
+	path = ansible/roles/docker-io
+	url = https://github.com/kofonfor/ansible-role-docker-io.git
+[submodule "ansible/roles/docker.ubuntu"]
+	path = ansible/roles/docker.ubuntu
+	url = https://github.com/angstwad/docker.ubuntu.git
