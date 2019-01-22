@@ -7,6 +7,22 @@ grafana_enable_internal_metrics: True
 grafana_prometheus_address: 172.16.137.2
 grafana_auto_prometheus_config: True
 nginx_package_name: "nginx-extras"
+nginx_extra_http_options: |
+        lua_shared_dict prometheus_metrics 10M;
+        lua_package_path "/var/lib/nginx-lua-prometheus/?.lua";
+        init_by_lua '
+          prometheus = require("prometheus").init("prometheus_metrics")
+          metric_requests = prometheus:counter(
+            "nginx_http_requests_total", "Number of HTTP requests", {"host", "status"})
+          metric_latency = prometheus:histogram(
+            "nginx_http_request_duration_seconds", "HTTP request latency", {"host"})
+          metric_connections = prometheus:gauge(
+            "nginx_http_connections", "Number of HTTP connections", {"state"})
+        ';
+        log_by_lua '
+          metric_requests:inc(1, {ngx.var.server_name, ngx.var.status})
+          metric_latency:observe(tonumber(ngx.var.request_time), {ngx.var.server_name})
+        ';
 prometheus_jobs:
   - name: nodes
     metrics_path: "/metrics"
