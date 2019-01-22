@@ -9,4 +9,33 @@
   - role: docker-io
   - role: prometheus/prometheus-container
   - role: grafana-container
-  - role: nginx
+
+- hosts: prom-server
+  become: yes
+  tasks:
+  - name: checkout nginx-lua-prometheus
+    git: repo='https://github.com/knyar/nginx-lua-prometheus.git' dest=/var/lib/nginx-lua-prometheus/
+  - name: port 80
+    include_role:
+      name: geerlingguy.nginx
+    vars:
+      nginx_vhosts:
+        - listen: "9145"
+          server_name: "metrics"
+          filename: "metrics.conf"
+          access_log: "/var/log/nginx/metrics.access.log"
+          error_log: "/var/log/nginx/metrics.error.log"
+          extra_parameters: |
+              allow 192.168.0.0/16;
+              allow 172.16.0.0/16;
+              allow 172.17.0.0/16;
+              allow 127.0.0.1;
+              deny all;
+              location /metrics {
+                  content_by_lua '
+                    metric_connections:set(ngx.var.connections_reading, {"reading"})
+                    metric_connections:set(ngx.var.connections_waiting, {"waiting"})
+                    metric_connections:set(ngx.var.connections_writing, {"writing"})
+                    prometheus:collect()
+                  ';
+              }
