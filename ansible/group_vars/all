@@ -6,6 +6,7 @@ grafana_admin_password: ooZ6ukei
 grafana_enable_internal_metrics: True
 grafana_prometheus_address: 172.16.137.2
 grafana_auto_prometheus_config: True
+nginx_package_name: "nginx-extras"
 prometheus_jobs:
   - name: nodes
     metrics_path: "/metrics"
