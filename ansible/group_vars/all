@@ -6,6 +6,7 @@ grafana_admin_password: ooZ6ukei
 grafana_enable_internal_metrics: True
 grafana_prometheus_address: 172.16.137.2
 grafana_auto_prometheus_config: True
+grafana_auto_dashboards_config: True
 nginx_package_name: "nginx-extras"
 nginx_extra_http_options: |
         lua_shared_dict prometheus_metrics 10M;
@@ -38,3 +39,47 @@ prometheus_jobs:
     targets:
       - host: 172.16.137.2
         port: 9145
+grafana_dashboards:
+  - file_name: dashboard
+    dashboard_name: Nginx
+    panels:
+      - name: "Reqs rate (on all instances)"
+        stack: "true"
+        fill: 8
+        gridpos_x: 0
+        gridpos_y: 0
+        gridpos_w: 12
+        gridpos_h: 10
+        targets:
+          - expr: "sum by (instance)(irate(nginx_http_requests_total[5m]))"
+            legend_format: !unsafe "{{instance}}"
+      - name: "Reqs rate (total on $instance)"
+        stack: "true"
+        fill: 1
+        gridpos_x: 12
+        gridpos_y: 0
+        gridpos_w: 12
+        gridpos_h: 10
+        targets:
+          - expr: 'sum by (instance)(irate(nginx_http_requests_total{instance="$instance"}[5m]))'
+            legend_format: !unsafe "{{status}}"
+      - name: "Reqs rate (by status on $instance)"
+        stack: "true"
+        fill: 10
+        gridpos_x: 0
+        gridpos_y: 0
+        gridpos_w: 12
+        gridpos_h: 10
+        targets:
+          - expr: 'sum by (status)(irate(nginx_http_requests_total{instance="$instance"}[5m]))'
+            legend_format: !unsafe "{{status}}"
+      - name: "Reqs rate (by host on $instance)"
+        stack: "true"
+        fill: 10
+        gridpos_x: 12
+        gridpos_y: 0
+        gridpos_w: 12
+        gridpos_h: 10
+        targets:
+          - expr: 'sum by (host)(irate(nginx_http_requests_total{instance="$instance"}[5m]))'
+            legend_format: !unsafe "{{host}}"

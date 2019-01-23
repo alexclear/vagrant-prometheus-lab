@@ -5,13 +5,6 @@
 
 - hosts: prom-server
   become: yes
-  roles:
-  - role: docker-io
-  - role: prometheus/prometheus-container
-  - role: grafana-container
-
-- hosts: prom-server
-  become: yes
   tasks:
   - name: checkout nginx-lua-prometheus
     git: repo='https://github.com/knyar/nginx-lua-prometheus.git' dest=/var/lib/nginx-lua-prometheus/
@@ -39,3 +32,10 @@
                     prometheus:collect()
                   ';
               }
+
+- hosts: prom-server
+  become: yes
+  roles:
+  - role: docker-io
+  - role: prometheus/prometheus-container
+  - role: grafana-container
