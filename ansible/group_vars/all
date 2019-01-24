@@ -135,8 +135,21 @@ grafana_dashboards_grafonnet:
 grafana_dashboards_heatmaps:
   - file_name: nginxlat
     dashboard_name: "Nginx latencies"
+    templates: []
     panels:
       - name: "Nginx response latencies"
         targets:
           - expr: 'sum by (le)(rate(nginx_http_request_duration_seconds_bucket[5m]))'
+            legend_format: !unsafe "{{le}}"
+  - file_name: nginxlatinstances
+    dashboard_name: "Nginx latencies by instance"
+    templates:
+      - name: "instance"
+        query: "label_values(nginx_http_request_duration_seconds_bucket, instance)"
+        label: "Instance"
+        includeAll: "false"
+    panels:
+      - name: "Nginx response latencies"
+        targets:
+          - expr: 'sum by (le)(rate(nginx_http_request_duration_seconds_bucket{instance=\"$instance\"}[5m]))'
             legend_format: !unsafe "{{le}}"
