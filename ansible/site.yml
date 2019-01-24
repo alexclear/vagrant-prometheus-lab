@@ -3,7 +3,7 @@
   roles:
   - role: prometheus/node_exporter
 
-- hosts: prom-server
+- hosts: all
   become: yes
   tasks:
   - name: checkout nginx-lua-prometheus

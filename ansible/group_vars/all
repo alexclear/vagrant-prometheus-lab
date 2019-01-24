@@ -39,6 +39,10 @@ prometheus_jobs:
     targets:
       - host: 172.16.137.2
         port: 9145
+      - host: 172.16.137.3
+        port: 9145
+      - host: 172.16.137.4
+        port: 9145
 grafana_dashboards_grafonnet:
   - file_name: dashboard
     dashboard_name: Nginx
