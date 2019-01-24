@@ -39,7 +39,7 @@ prometheus_jobs:
     targets:
       - host: 172.16.137.2
         port: 9145
-grafana_dashboards:
+grafana_dashboards_grafonnet:
   - file_name: dashboard
     dashboard_name: Nginx
     tag: nginx
@@ -128,3 +128,11 @@ grafana_dashboards:
             legend_format: !unsafe "{{mode}}"
             format: 'time_series'
             interval_factor: 2
+grafana_dashboards_heatmaps:
+  - file_name: nginxlat
+    dashboard_name: "Nginx latencies"
+    panels:
+      - name: "Nginx response latencies"
+        targets:
+          - expr: 'sum by (le)(rate(nginx_http_request_duration_seconds_bucket[5m]))'
+            legend_format: !unsafe "{{le}}"
