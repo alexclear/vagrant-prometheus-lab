@@ -53,6 +53,7 @@ grafana_dashboards:
         stack: "true"
         fill: 8
         format: "short"
+        span: 6
         gridpos_x: 0
         gridpos_y: 0
         gridpos_w: 12
@@ -60,10 +61,13 @@ grafana_dashboards:
         targets:
           - expr: "sum by (instance)(irate(nginx_http_requests_total[5m]))"
             legend_format: !unsafe "{{instance}}"
+            format: 'time_series'
+            interval_factor: 2
       - name: "Reqs rate (total on $instance)"
         stack: "true"
         fill: 1
         format: "short"
+        span: 6
         gridpos_x: 12
         gridpos_y: 0
         gridpos_w: 12
@@ -71,10 +75,13 @@ grafana_dashboards:
         targets:
           - expr: 'sum by (instance)(irate(nginx_http_requests_total{instance="$instance"}[5m]))'
             legend_format: !unsafe "{{status}}"
+            format: 'time_series'
+            interval_factor: 2
       - name: "Reqs rate (by status on $instance)"
         stack: "true"
         fill: 10
         format: "short"
+        span: 6
         gridpos_x: 0
         gridpos_y: 0
         gridpos_w: 12
@@ -82,10 +89,13 @@ grafana_dashboards:
         targets:
           - expr: 'sum by (status)(irate(nginx_http_requests_total{instance="$instance"}[5m]))'
             legend_format: !unsafe "{{status}}"
+            format: 'time_series'
+            interval_factor: 2
       - name: "Reqs rate (by host on $instance)"
         stack: "true"
         fill: 10
         format: "short"
+        span: 6
         gridpos_x: 12
         gridpos_y: 0
         gridpos_w: 12
@@ -93,6 +103,8 @@ grafana_dashboards:
         targets:
           - expr: 'sum by (host)(irate(nginx_http_requests_total{instance="$instance"}[5m]))'
             legend_format: !unsafe "{{host}}"
+            format: 'time_series'
+            interval_factor: 2
   - file_name: cpu
     dashboard_name: CPU
     tag: hosts
@@ -106,6 +118,7 @@ grafana_dashboards:
         stack: "true"
         fill: 10
         format: "percent"
+        span: 6
         gridpos_x: 0
         gridpos_y: 0
         gridpos_w: 24
@@ -113,3 +126,5 @@ grafana_dashboards:
         targets:
           - expr: '(avg by (mode)(irate(node_cpu_seconds_total{instance="$instance"}[5m])))*100'
             legend_format: !unsafe "{{mode}}"
+            format: 'time_series'
+            interval_factor: 2
