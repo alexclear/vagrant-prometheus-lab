@@ -138,6 +138,7 @@ grafana_dashboards_heatmaps:
     templates: []
     panels:
       - name: "Nginx response latencies"
+        card_color: "#d683ce"
         targets:
           - expr: 'sum by (le)(rate(nginx_http_request_duration_seconds_bucket[5m]))'
             legend_format: !unsafe "{{le}}"
@@ -150,6 +151,7 @@ grafana_dashboards_heatmaps:
         includeAll: "false"
     panels:
       - name: "Nginx response latencies"
+        card_color: "#5759e0"
         targets:
           - expr: 'sum by (le)(rate(nginx_http_request_duration_seconds_bucket{instance=\"$instance\"}[5m]))'
             legend_format: !unsafe "{{le}}"
