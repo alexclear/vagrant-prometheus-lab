@@ -42,10 +42,17 @@ prometheus_jobs:
 grafana_dashboards:
   - file_name: dashboard
     dashboard_name: Nginx
+    tag: nginx
+    templates:
+      - name: "instance"
+        query: "label_values(nginx_http_requests_total, instance)"
+        label: "Instance"
+        includeAll: "false"
     panels:
       - name: "Reqs rate (on all instances)"
         stack: "true"
         fill: 8
+        format: "short"
         gridpos_x: 0
         gridpos_y: 0
         gridpos_w: 12
@@ -56,6 +63,7 @@ grafana_dashboards:
       - name: "Reqs rate (total on $instance)"
         stack: "true"
         fill: 1
+        format: "short"
         gridpos_x: 12
         gridpos_y: 0
         gridpos_w: 12
@@ -66,6 +74,7 @@ grafana_dashboards:
       - name: "Reqs rate (by status on $instance)"
         stack: "true"
         fill: 10
+        format: "short"
         gridpos_x: 0
         gridpos_y: 0
         gridpos_w: 12
@@ -76,6 +85,7 @@ grafana_dashboards:
       - name: "Reqs rate (by host on $instance)"
         stack: "true"
         fill: 10
+        format: "short"
         gridpos_x: 12
         gridpos_y: 0
         gridpos_w: 12
@@ -83,3 +93,23 @@ grafana_dashboards:
         targets:
           - expr: 'sum by (host)(irate(nginx_http_requests_total{instance="$instance"}[5m]))'
             legend_format: !unsafe "{{host}}"
+  - file_name: cpu
+    dashboard_name: CPU
+    tag: hosts
+    templates:
+      - name: "instance"
+        query: "label_values(node_cpu_seconds_total, instance)"
+        label: "Instance"
+        includeAll: "false"
+    panels:
+      - name: "CPU util % on $instance"
+        stack: "true"
+        fill: 10
+        format: "percent"
+        gridpos_x: 0
+        gridpos_y: 0
+        gridpos_w: 24
+        gridpos_h: 10
+        targets:
+          - expr: '(avg by (mode)(irate(node_cpu_seconds_total{instance="$instance"}[5m])))*100'
+            legend_format: !unsafe "{{mode}}"
