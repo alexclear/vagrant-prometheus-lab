@@ -46,7 +46,8 @@ prometheus_jobs:
 grafana_dashboards_grafonnet:
   - file_name: dashboard
     dashboard_name: Nginx
-    tag: nginx
+    tags:
+      - nginx
     templates:
       - name: "instance"
         query: "label_values(nginx_http_requests_total, instance)"
@@ -111,7 +112,8 @@ grafana_dashboards_grafonnet:
             interval_factor: 2
   - file_name: cpu
     dashboard_name: CPU
-    tag: hosts
+    tags:
+      - hosts
     templates:
       - name: "instance"
         query: "label_values(node_cpu_seconds_total, instance)"
@@ -135,6 +137,8 @@ grafana_dashboards_grafonnet:
 grafana_dashboards_heatmaps:
   - file_name: nginxlat
     dashboard_name: "Nginx latencies"
+    tags:
+      - nginx
     templates: []
     panels:
       - name: "Nginx response latencies"
@@ -144,6 +148,8 @@ grafana_dashboards_heatmaps:
             legend_format: !unsafe "{{le}}"
   - file_name: nginxlatinstances
     dashboard_name: "Nginx latencies by instance"
+    tags:
+      - nginx
     templates:
       - name: "instance"
         query: "label_values(nginx_http_request_duration_seconds_bucket, instance)"
