@@ -65,6 +65,7 @@ grafana_dashboards_grafonnet:
         gridpos_h: 10
         min: 0
         max: "null"
+        alias_colors: "{}"
         targets:
           - expr: "sum by (instance)(irate(nginx_http_requests_total[5m]))"
             legend_format: !unsafe "{{instance}}"
@@ -81,6 +82,7 @@ grafana_dashboards_grafonnet:
         gridpos_h: 10
         min: 0
         max: "null"
+        alias_colors: "{}"
         targets:
           - expr: 'sum by (instance)(irate(nginx_http_requests_total{instance="$instance"}[5m]))'
             legend_format: !unsafe "{{status}}"
@@ -97,6 +99,7 @@ grafana_dashboards_grafonnet:
         gridpos_h: 10
         min: 0
         max: "null"
+        alias_colors: "{}"
         targets:
           - expr: 'sum by (status)(irate(nginx_http_requests_total{instance="$instance"}[5m]))'
             legend_format: !unsafe "{{status}}"
@@ -113,6 +116,7 @@ grafana_dashboards_grafonnet:
         gridpos_h: 10
         min: 0
         max: "null"
+        alias_colors: "{}"
         targets:
           - expr: 'sum by (host)(irate(nginx_http_requests_total{instance="$instance"}[5m]))'
             legend_format: !unsafe "{{host}}"
@@ -139,6 +143,7 @@ grafana_dashboards_grafonnet:
         gridpos_h: 10
         min: 0
         max: "null"
+        alias_colors: "{}"
         targets:
           - expr: '(avg by (mode)(irate(node_cpu_seconds_total{instance="$instance"}[5m])))*100'
             legend_format: !unsafe "{{mode}}"
@@ -165,6 +170,7 @@ grafana_dashboards_grafonnet:
         gridpos_h: 10
         min: 0
         max: 100
+        alias_colors: '{ "sda": "#70dbed", "sdb": "#bf1b00" }'
         targets:
           - expr: 'irate(node_disk_io_time_seconds_total{instance="$instance"}[5m])*100'
             legend_format: !unsafe "{{device}}"
