@@ -150,7 +150,7 @@ grafana_dashboards_grafonnet:
             format: 'time_series'
             interval_factor: 2
   - file_name: diskutil
-    dashboard_name: "Disk util"
+    dashboard_name: "Disk util %"
     tags:
       - hosts
     templates:
@@ -174,6 +174,33 @@ grafana_dashboards_grafonnet:
         targets:
           - expr: 'irate(node_disk_io_time_seconds_total{instance="$instance"}[5m])*100'
             legend_format: !unsafe "{{device}}"
+            format: 'time_series'
+            interval_factor: 2
+  - file_name: conntrack
+    dashboard_name: "Connection tracking"
+    tags:
+      - hosts
+    templates:
+      - name: "instance"
+        query: "label_values(node_nf_conntrack_entries, instance)"
+        label: "Instance"
+        includeAll: "false"
+    panels:
+      - name: "Connection tracking entries on $instance"
+        stack: "false"
+        fill: 0
+        format: "short"
+        span: 6
+        gridpos_x: 0
+        gridpos_y: 0
+        gridpos_w: 24
+        gridpos_h: 10
+        min: 0
+        max: "null"
+        alias_colors: '{ "Nr. of entries": "#e5a8e2" }'
+        targets:
+          - expr: 'node_nf_conntrack_entries{instance="$instance"}'
+            legend_format: !unsafe "Nr. of entries"
             format: 'time_series'
             interval_factor: 2
 grafana_dashboards_heatmaps:
