@@ -66,6 +66,7 @@ grafana_dashboards_grafonnet:
         min: 0
         max: "null"
         alias_colors: "{}"
+        linewidth: 1
         targets:
           - expr: "sum by (instance)(irate(nginx_http_requests_total[5m]))"
             legend_format: !unsafe "{{instance}}"
@@ -83,6 +84,7 @@ grafana_dashboards_grafonnet:
         min: 0
         max: "null"
         alias_colors: "{}"
+        linewidth: 1
         targets:
           - expr: 'sum by (instance)(irate(nginx_http_requests_total{instance="$instance"}[5m]))'
             legend_format: !unsafe "{{status}}"
@@ -100,6 +102,7 @@ grafana_dashboards_grafonnet:
         min: 0
         max: "null"
         alias_colors: "{}"
+        linewidth: 1
         targets:
           - expr: 'sum by (status)(irate(nginx_http_requests_total{instance="$instance"}[5m]))'
             legend_format: !unsafe "{{status}}"
@@ -117,6 +120,7 @@ grafana_dashboards_grafonnet:
         min: 0
         max: "null"
         alias_colors: "{}"
+        linewidth: 1
         targets:
           - expr: 'sum by (host)(irate(nginx_http_requests_total{instance="$instance"}[5m]))'
             legend_format: !unsafe "{{host}}"
@@ -144,6 +148,7 @@ grafana_dashboards_grafonnet:
         min: 0
         max: "null"
         alias_colors: "{}"
+        linewidth: 1
         targets:
           - expr: '(avg by (mode)(irate(node_cpu_seconds_total{instance="$instance"}[5m])))*100'
             legend_format: !unsafe "{{mode}}"
@@ -171,6 +176,7 @@ grafana_dashboards_grafonnet:
         min: 0
         max: 100
         alias_colors: '{ "sda": "#70dbed", "sdb": "#bf1b00" }'
+        linewidth: 1
         targets:
           - expr: 'irate(node_disk_io_time_seconds_total{instance="$instance"}[5m])*100'
             legend_format: !unsafe "{{device}}"
@@ -198,6 +204,7 @@ grafana_dashboards_grafonnet:
         min: 0
         max: "null"
         alias_colors: '{ "Nr. of entries": "#e5a8e2" }'
+        linewidth: 2
         targets:
           - expr: 'node_nf_conntrack_entries{instance="$instance"}'
             legend_format: !unsafe "Nr. of entries"
