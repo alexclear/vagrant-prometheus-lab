@@ -13,7 +13,7 @@ ANSIBLE_RAW_SSH_ARGS << " -o IdentityFile=./.vagrant/machines/prom3/virtualbox/p
 
 Vagrant.configure("2") do |config|
   config.vm.define "prom1" do |prom1|
-    prom1.vm.box = "ubuntu/xenial64"
+    prom1.vm.box = "ubuntu/bionic64"
     prom1.vm.hostname = "prom1"
     prom1.vm.network "private_network", ip: $PROM1_IP
     prom1.vm.network "forwarded_port", guest: 9090, host: 9090
@@ -32,7 +32,7 @@ Vagrant.configure("2") do |config|
   end
 
   config.vm.define "prom2" do |prom2|
-    prom2.vm.box = "ubuntu/xenial64"
+    prom2.vm.box = "ubuntu/bionic64"
     prom2.vm.hostname = "prom2"
     prom2.vm.network "private_network", ip: $PROM2_IP
 
@@ -48,7 +48,7 @@ Vagrant.configure("2") do |config|
   end
 
   config.vm.define "prom3" do |prom3|
-    prom3.vm.box = "ubuntu/xenial64"
+    prom3.vm.box = "ubuntu/bionic64"
     prom3.vm.hostname = "prom3"
     prom3.vm.network "private_network", ip: $PROM3_IP
 

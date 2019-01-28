@@ -1,3 +1,4 @@
+install_kernel_extras_dio: False
 ext_prometheus_data_volume: /var/lib/docker-extvols/prometheus/data
 ext_prometheus_config_volume: /var/lib/docker-extvols/prometheus/config
 nginx_lua_prometheus: True
@@ -8,6 +9,8 @@ grafana_prometheus_address: 172.16.137.2
 grafana_auto_prometheus_config: True
 grafana_auto_dashboards_config: True
 nginx_package_name: "nginx-extras"
+nginx_extra_conf_options: |
+        include /etc/nginx/modules-enabled/*.conf;
 nginx_extra_http_options: |
         lua_shared_dict prometheus_metrics 10M;
         lua_package_path "/var/lib/nginx-lua-prometheus/?.lua";

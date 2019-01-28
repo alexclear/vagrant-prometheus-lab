@@ -19,3 +19,6 @@
 [submodule "ansible/roles/nginx"]
 	path = ansible/roles/nginx
 	url = https://github.com/kofonfor/ansible-role-nginx.git
+[submodule "ansible/roles/common-utils"]
+	path = ansible/roles/common-utils
+	url = https://github.com/kofonfor/ansible-role-common-utils.git
