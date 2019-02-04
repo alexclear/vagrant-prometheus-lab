@@ -49,6 +49,8 @@ prometheus_jobs:
 grafana_dashboards_grafonnet:
   - file_name: dashboard
     dashboard_name: Nginx
+    time_from: "now-3h"
+    refresh: "30s"
     tags:
       - nginx
     templates:
@@ -58,6 +60,7 @@ grafana_dashboards_grafonnet:
         includeAll: "false"
     panels:
       - name: "Reqs rate (on all instances)"
+        type: "graph"
         stack: "true"
         fill: 8
         format: "short"
@@ -66,6 +69,7 @@ grafana_dashboards_grafonnet:
         gridpos_y: 0
         gridpos_w: 12
         gridpos_h: 10
+        decimals: 2
         min: 0
         max: "null"
         alias_colors: "{}"
@@ -76,6 +80,7 @@ grafana_dashboards_grafonnet:
             format: 'time_series'
             interval_factor: 2
       - name: "Reqs rate (total on $instance)"
+        type: "graph"
         stack: "true"
         fill: 1
         format: "short"
@@ -84,6 +89,7 @@ grafana_dashboards_grafonnet:
         gridpos_y: 0
         gridpos_w: 12
         gridpos_h: 10
+        decimals: 2
         min: 0
         max: "null"
         alias_colors: "{}"
@@ -94,6 +100,7 @@ grafana_dashboards_grafonnet:
             format: 'time_series'
             interval_factor: 2
       - name: "Reqs rate (by status on $instance)"
+        type: "graph"
         stack: "true"
         fill: 10
         format: "short"
@@ -102,6 +109,7 @@ grafana_dashboards_grafonnet:
         gridpos_y: 0
         gridpos_w: 12
         gridpos_h: 10
+        decimals: 2
         min: 0
         max: "null"
         alias_colors: "{}"
@@ -112,6 +120,7 @@ grafana_dashboards_grafonnet:
             format: 'time_series'
             interval_factor: 2
       - name: "Reqs rate (by host on $instance)"
+        type: "graph"
         stack: "true"
         fill: 10
         format: "short"
@@ -120,6 +129,7 @@ grafana_dashboards_grafonnet:
         gridpos_y: 0
         gridpos_w: 12
         gridpos_h: 10
+        decimals: 2
         min: 0
         max: "null"
         alias_colors: "{}"
@@ -131,6 +141,8 @@ grafana_dashboards_grafonnet:
             interval_factor: 2
   - file_name: cpu
     dashboard_name: CPU
+    time_from: "now-3h"
+    refresh: "30s"
     tags:
       - hosts
     templates:
@@ -140,6 +152,7 @@ grafana_dashboards_grafonnet:
         includeAll: "false"
     panels:
       - name: "CPU util % on $instance"
+        type: "graph"
         stack: "true"
         fill: 10
         format: "percent"
@@ -148,6 +161,7 @@ grafana_dashboards_grafonnet:
         gridpos_y: 0
         gridpos_w: 24
         gridpos_h: 10
+        decimals: 2
         min: 0
         max: "null"
         alias_colors: "{}"
@@ -159,6 +173,8 @@ grafana_dashboards_grafonnet:
             interval_factor: 2
   - file_name: diskutil
     dashboard_name: "Disk util %"
+    time_from: "now-3h"
+    refresh: "30s"
     tags:
       - hosts
     templates:
@@ -168,6 +184,7 @@ grafana_dashboards_grafonnet:
         includeAll: "false"
     panels:
       - name: "Disk util % on $instance"
+        type: "graph"
         stack: "false"
         fill: 0
         format: "percent"
@@ -176,6 +193,7 @@ grafana_dashboards_grafonnet:
         gridpos_y: 0
         gridpos_w: 24
         gridpos_h: 10
+        decimals: 2
         min: 0
         max: 100
         alias_colors: '{ "sda": "#70dbed", "sdb": "#bf1b00" }'
@@ -187,6 +205,8 @@ grafana_dashboards_grafonnet:
             interval_factor: 2
   - file_name: conntrack
     dashboard_name: "Connection tracking"
+    time_from: "now-3h"
+    refresh: "30s"
     tags:
       - hosts
     templates:
@@ -196,6 +216,7 @@ grafana_dashboards_grafonnet:
         includeAll: "false"
     panels:
       - name: "Connection tracking entries on $instance"
+        type: "graph"
         stack: "false"
         fill: 0
         format: "short"
@@ -204,6 +225,7 @@ grafana_dashboards_grafonnet:
         gridpos_y: 0
         gridpos_w: 24
         gridpos_h: 10
+        decimals: 2
         min: 0
         max: "null"
         alias_colors: '{ "Nr. of entries": "#e5a8e2" }'
