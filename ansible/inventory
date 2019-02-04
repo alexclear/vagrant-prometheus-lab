@@ -1,5 +1,5 @@
 [prom1]
-prom1 ansible_host=172.16.137.2
+prom1 ansible_host=172.16.137.2 docker_prom_metrics_ip=172.16.137.2
 
 [prom2]
 prom2 ansible_host=172.16.137.3

@@ -46,6 +46,11 @@ prometheus_jobs:
         port: 9145
       - host: 172.16.137.4
         port: 9145
+  - name: docker
+    metrics_path: "/metrics"
+    targets:
+      - host: 172.16.137.2
+        port: 9323
 grafana_dashboards_grafonnet:
   - file_name: dashboard
     dashboard_name: Nginx
