@@ -22,3 +22,6 @@
 [submodule "ansible/roles/common-utils"]
 	path = ansible/roles/common-utils
 	url = https://github.com/kofonfor/ansible-role-common-utils.git
+[submodule "ansible/roles/andrewrothstein.docker"]
+	path = ansible/roles/andrewrothstein.docker
+	url = https://github.com/andrewrothstein/ansible-docker.git
