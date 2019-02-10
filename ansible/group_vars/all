@@ -283,3 +283,26 @@ grafana_dashboards_heatmaps:
         targets:
           - expr: 'sum by (le)(rate(nginx_http_request_duration_seconds_bucket{instance=\"$instance\"}[5m]))'
             legend_format: !unsafe "{{le}}"
+  - file_name: bioinstancedevices
+    dashboard_name: "Block I/O latencies by instance and device"
+    time_from: "now-3h"
+    refresh: "30s"
+    tags:
+      - hosts
+    templates:
+      - name: "instance"
+        query: "label_values(ebpf_exporter_bio_latency_seconds_bucket, instance)"
+        label: "Instance"
+        includeAll: "false"
+      - name: "device"
+        query: 'label_values(ebpf_exporter_bio_latency_seconds_bucket{instance=\"$instance\"}, device)'
+        label: "Device"
+        includeAll: "false"
+    panels:
+      - name: "Block I/O latencies on ($instance, $device)"
+        card_color: "#fcf82d"
+        format: "s"
+        decimals: "1"
+        targets:
+          - expr: 'sum by (le)(rate(ebpf_exporter_bio_latency_seconds_bucket{instance=\"$instance\",device=\"$device\"}[5m]))'
+            legend_format: !unsafe "{{le}}"
