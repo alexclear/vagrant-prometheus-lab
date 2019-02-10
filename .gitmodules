@@ -25,3 +25,6 @@
 [submodule "ansible/roles/andrewrothstein.docker"]
 	path = ansible/roles/andrewrothstein.docker
 	url = https://github.com/andrewrothstein/ansible-docker.git
+[submodule "ansible/roles/bcc-tools"]
+	path = ansible/roles/bcc-tools
+	url = https://github.com/kofonfor/ansible-role-bcc-tools.git

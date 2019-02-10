@@ -3,6 +3,7 @@
   roles:
   - role: common-utils
   - role: prometheus/node_exporter
+  - role: prometheus/ebpf_exporter
 
 - hosts: all
   become: yes
