@@ -29,6 +29,15 @@ nginx_extra_http_options: |
           metric_latency:observe(tonumber(ngx.var.request_time), {ngx.var.server_name})
         ';
 prometheus_jobs:
+  - name: nodesebpf
+    metrics_path: "/metrics"
+    targets:
+      - host: 172.16.137.2
+        port: 9435
+      - host: 172.16.137.3
+        port: 9435
+      - host: 172.16.137.4
+        port: 9435
   - name: nodes
     metrics_path: "/metrics"
     targets:
@@ -244,17 +253,21 @@ grafana_dashboards_grafonnet:
 grafana_dashboards_heatmaps:
   - file_name: nginxlat
     dashboard_name: "Nginx latencies"
+    time_from: "now-3h"
     tags:
       - nginx
     templates: []
     panels:
       - name: "Nginx response latencies"
         card_color: "#d683ce"
+        decimals: "null"
+        format: "short"
         targets:
           - expr: 'sum by (le)(rate(nginx_http_request_duration_seconds_bucket[5m]))'
             legend_format: !unsafe "{{le}}"
   - file_name: nginxlatinstances
     dashboard_name: "Nginx latencies by instance"
+    time_from: "now-3h"
     tags:
       - nginx
     templates:
@@ -265,6 +278,8 @@ grafana_dashboards_heatmaps:
     panels:
       - name: "Nginx response latencies"
         card_color: "#5759e0"
+        decimals: "null"
+        format: "short"
         targets:
           - expr: 'sum by (le)(rate(nginx_http_request_duration_seconds_bucket{instance=\"$instance\"}[5m]))'
             legend_format: !unsafe "{{le}}"
