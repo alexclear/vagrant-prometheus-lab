@@ -1,3 +1,9 @@
+alertmanager_receivers:
+  - name: "slack-test"
+    configs:
+      slack_configs:
+        - channel: "'#alerting'"
+          send_resolved: "true"
 use_andrewrothstein_docker: True
 install_kernel_extras_dio: False
 ext_prometheus_data_volume: /var/lib/docker-extvols/prometheus/data
