@@ -1,9 +1,11 @@
+alertmanager_default_receiver: "slack-test"
 alertmanager_receivers:
   - name: "slack-test"
     configs:
       slack_configs:
-        - channel: "'#alerting'"
+        - channel: "'#vagrant-alerts'"
           send_resolved: "true"
+          api_url: "'https://hooks.slack.com/services/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'"
 use_andrewrothstein_docker: True
 install_kernel_extras_dio: False
 ext_prometheus_data_volume: /var/lib/docker-extvols/prometheus/data
