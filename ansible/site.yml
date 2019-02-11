@@ -40,4 +40,5 @@
   roles:
   - role: docker-io
   - role: prometheus/prometheus-container
+  - role: prometheus/alertmanager
   - role: grafana-container
