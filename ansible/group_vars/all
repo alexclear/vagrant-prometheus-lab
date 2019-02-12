@@ -1,3 +1,5 @@
+alertmanagers_group_name: "prom-alertmanagers"
+alertmanager_advertise_address: "{{ ansible_enp0s8.ipv4.address }}"
 alertmanager_default_receiver: "slack-test"
 alertmanager_receivers:
   - name: "slack-test"
