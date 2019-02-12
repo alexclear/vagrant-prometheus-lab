@@ -12,5 +12,10 @@ prom1
 prom2
 prom3
 
+[prom-alertmanagers:children]
+prom1
+prom2
+prom3
+
 [prom-server:children]
 prom1
