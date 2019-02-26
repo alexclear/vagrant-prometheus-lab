@@ -24,6 +24,8 @@ Vagrant.configure("2") do |config|
     prom1.vm.provider :libvirt do |v, override|
       v.cpu_mode = 'custom'
       v.cpu_model = 'kvm64'
+      v.volume_cache = 'writeback'
+      v.disk_bus = 'virtio'
       v.cpus = 4
       v.memory = 8192
     end
@@ -47,6 +49,8 @@ Vagrant.configure("2") do |config|
     prom2.vm.provider :libvirt do |v, override|
       v.cpu_mode = 'custom'
       v.cpu_model = 'kvm64'
+      v.volume_cache = 'writeback'
+      v.disk_bus = 'virtio'
       v.cpus = 4
       v.memory = 8192
     end
@@ -76,6 +80,8 @@ Vagrant.configure("2") do |config|
       ANSIBLE_RAW_SSH_ARGS << " -o IdentityFile=./.vagrant/machines/prom3/libvirt/private_key "
       v.cpu_mode = 'custom'
       v.cpu_model = 'kvm64'
+      v.volume_cache = 'writeback'
+      v.disk_bus = 'virtio'
       v.cpus = 4
       v.memory = 8192
     end
