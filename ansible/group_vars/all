@@ -196,6 +196,55 @@ grafana_dashboards_grafonnet:
             legend_format: !unsafe "{{mode}}"
             format: 'time_series'
             interval_factor: 2
+  - file_name: memory
+    dashboard_name: Memory
+    time_from: "now-3h"
+    refresh: "30s"
+    tags:
+      - hosts
+    templates:
+      - name: "instance"
+        query: "label_values(node_memory_MemFree_bytes, instance)"
+        label: "Instance"
+        includeAll: "false"
+    panels:
+      - name: "Memory utilization on $instance"
+        type: "graph"
+        stack: "true"
+        fill: 10
+        format: "decbytes"
+        span: 6
+        gridpos_x: 0
+        gridpos_y: 0
+        gridpos_w: 24
+        gridpos_h: 10
+        decimals: 2
+        min: 0
+        max: "null"
+        alias_colors: '{ "Total": "rgb(219, 18, 42)" }'
+        linewidth: 1
+        targets:
+          - expr: 'node_memory_Buffers_bytes{instance="$instance"}'
+            legend_format: !unsafe "Buffers"
+            format: 'time_series'
+            interval_factor: 2
+          - expr: 'node_memory_Cached_bytes{instance="$instance"}'
+            legend_format: !unsafe "Cached"
+            format: 'time_series'
+            interval_factor: 2
+          - expr: 'node_memory_MemFree_bytes{instance="$instance"}'
+            legend_format: !unsafe "Free"
+            format: 'time_series'
+            interval_factor: 2
+          - expr: 'node_memory_MemTotal_bytes{instance="$instance"}'
+            legend_format: !unsafe "Total"
+            format: 'time_series'
+            interval_factor: 2
+        series_overrides:
+          Total:
+            fill: 0
+            linewidth: 2
+            stack: "false"
   - file_name: diskutil
     dashboard_name: "Disk util %"
     time_from: "now-3h"
