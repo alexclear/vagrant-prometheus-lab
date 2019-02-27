@@ -217,9 +217,9 @@ grafana_dashboards_grafonnet:
         gridpos_x: 0
         gridpos_y: 0
         gridpos_w: 24
-        gridpos_h: 10
+        gridpos_h: 15
         decimals: 2
-        min: 0
+        min: "null"
         max: "null"
         alias_colors: '{ "Total": "rgb(219, 18, 42)" }'
         linewidth: 1
@@ -240,10 +240,24 @@ grafana_dashboards_grafonnet:
             legend_format: !unsafe "Total"
             format: 'time_series'
             interval_factor: 2
+          - expr: '-(node_memory_SwapTotal_bytes{instance="$instance"})'
+            legend_format: !unsafe "Swap total"
+            format: 'time_series'
+            interval_factor: 2
+          - expr: 'node_memory_SwapFree_bytes{instance="$instance"} - node_memory_SwapTotal_bytes{instance="$instance"}'
+            legend_format: !unsafe "Swap used"
+            format: 'time_series'
+            interval_factor: 2
         series_overrides:
-          Total:
+          "Total":
             fill: 0
             linewidth: 2
+            stack: "false"
+          "Swap total":
+            fill: 0
+            linewidth: 2
+            stack: "false"
+          "Swap used":
             stack: "false"
   - file_name: diskutil
     dashboard_name: "Disk util %"
