@@ -185,7 +185,7 @@ grafana_dashboards_grafonnet:
         gridpos_x: 0
         gridpos_y: 0
         gridpos_w: 24
-        gridpos_h: 10
+        gridpos_h: 15
         decimals: 2
         min: 0
         max: "null"
