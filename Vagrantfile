@@ -4,6 +4,12 @@
 $PROM1_IP = "172.16.137.2"
 $PROM2_IP = "172.16.137.3"
 $PROM3_IP = "172.16.137.4"
+$PROM1_NUM_CPUS = 4
+$PROM2_NUM_CPUS = 4
+$PROM3_NUM_CPUS = 4
+$PROM1_MEM_MBS = 8192
+$PROM2_MEM_MBS = 8192
+$PROM3_MEM_MBS = 8192
 
 ANSIBLE_RAW_SSH_ARGS = []
 
@@ -15,8 +21,8 @@ Vagrant.configure("2") do |config|
 
     prom1.vm.provider :virtualbox do |v, override|
       v.gui = false
-      v.customize ["modifyvm", :id, "--cpus", 4]
-      v.customize ["modifyvm", :id, "--memory", 8192]
+      v.customize ["modifyvm", :id, "--cpus", $PROM1_NUM_CPUS]
+      v.customize ["modifyvm", :id, "--memory", $PROM1_MEM_MBS]
       v.customize ["modifyvm", :id, "--cableconnected1", "on"]
       v.customize ["modifyvm", :id, "--cableconnected2", "on"]
     end
@@ -26,8 +32,8 @@ Vagrant.configure("2") do |config|
       v.cpu_model = 'kvm64'
       v.volume_cache = 'writeback'
       v.disk_bus = 'virtio'
-      v.cpus = 4
-      v.memory = 8192
+      v.cpus = $PROM1_NUM_CPUS
+      v.memory = $PROM1_MEM_MBS
     end
 
     prom1.vm.provision "shell", inline: "apt-get install -y python"
@@ -40,8 +46,8 @@ Vagrant.configure("2") do |config|
 
     prom2.vm.provider :virtualbox do |v, override|
       v.gui = false
-      v.customize ["modifyvm", :id, "--cpus", 4]
-      v.customize ["modifyvm", :id, "--memory", 8192]
+      v.customize ["modifyvm", :id, "--cpus", $PROM2_NUM_CPUS]
+      v.customize ["modifyvm", :id, "--memory", $PROM2_MEM_MBS]
       v.customize ["modifyvm", :id, "--cableconnected1", "on"]
       v.customize ["modifyvm", :id, "--cableconnected2", "on"]
     end
@@ -51,8 +57,8 @@ Vagrant.configure("2") do |config|
       v.cpu_model = 'kvm64'
       v.volume_cache = 'writeback'
       v.disk_bus = 'virtio'
-      v.cpus = 4
-      v.memory = 8192
+      v.cpus = $PROM2_NUM_CPUS
+      v.memory = $PROM2_MEM_MBS
     end
 
     prom2.vm.provision "shell", inline: "apt-get install -y python"
@@ -68,8 +74,8 @@ Vagrant.configure("2") do |config|
       ANSIBLE_RAW_SSH_ARGS << " -o IdentityFile=./.vagrant/machines/prom2/virtualbox/private_key "
       ANSIBLE_RAW_SSH_ARGS << " -o IdentityFile=./.vagrant/machines/prom3/virtualbox/private_key "
       v.gui = false
-      v.customize ["modifyvm", :id, "--cpus", 4]
-      v.customize ["modifyvm", :id, "--memory", 8192]
+      v.customize ["modifyvm", :id, "--cpus", $PROM3_NUM_CPUS]
+      v.customize ["modifyvm", :id, "--memory", $PROM3_MEM_MBS]
       v.customize ["modifyvm", :id, "--cableconnected1", "on"]
       v.customize ["modifyvm", :id, "--cableconnected2", "on"]
     end
@@ -82,8 +88,8 @@ Vagrant.configure("2") do |config|
       v.cpu_model = 'kvm64'
       v.volume_cache = 'writeback'
       v.disk_bus = 'virtio'
-      v.cpus = 4
-      v.memory = 8192
+      v.cpus = $PROM3_NUM_CPUS
+      v.memory = $PROM3_MEM_MBS
     end
 
     prom3.vm.provision "shell", inline: "apt-get install -y python"
