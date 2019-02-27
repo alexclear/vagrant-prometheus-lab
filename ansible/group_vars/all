@@ -221,7 +221,7 @@ grafana_dashboards_grafonnet:
         decimals: 2
         min: "null"
         max: "null"
-        alias_colors: '{ "Total": "rgb(219, 18, 42)" }'
+        alias_colors: '{ "Total": "rgb(219, 18, 42)", "Swap total": "rgb(0, 25, 255)", "Swap used": "light-purple" }'
         linewidth: 1
         targets:
           - expr: 'node_memory_Buffers_bytes{instance="$instance"}'
