@@ -85,7 +85,6 @@ grafana_dashboards_grafonnet:
         includeAll: "false"
     panels:
       - name: "Reqs rate (on all instances)"
-        type: "graph"
         stack: "true"
         fill: 8
         format: "short"
@@ -105,7 +104,6 @@ grafana_dashboards_grafonnet:
             format: 'time_series'
             interval_factor: 2
       - name: "Reqs rate (total on $instance)"
-        type: "graph"
         stack: "true"
         fill: 1
         format: "short"
@@ -125,7 +123,6 @@ grafana_dashboards_grafonnet:
             format: 'time_series'
             interval_factor: 2
       - name: "Reqs rate (by status on $instance)"
-        type: "graph"
         stack: "true"
         fill: 10
         format: "short"
@@ -145,7 +142,6 @@ grafana_dashboards_grafonnet:
             format: 'time_series'
             interval_factor: 2
       - name: "Reqs rate (by host on $instance)"
-        type: "graph"
         stack: "true"
         fill: 10
         format: "short"
@@ -177,7 +173,6 @@ grafana_dashboards_grafonnet:
         includeAll: "false"
     panels:
       - name: "CPU util % on $instance"
-        type: "graph"
         stack: "true"
         fill: 10
         format: "percent"
@@ -188,7 +183,7 @@ grafana_dashboards_grafonnet:
         gridpos_h: 15
         decimals: 2
         min: 0
-        max: "null"
+        max: "105"
         alias_colors: "{}"
         linewidth: 1
         targets:
@@ -209,7 +204,6 @@ grafana_dashboards_grafonnet:
         includeAll: "false"
     panels:
       - name: "Memory utilization on $instance"
-        type: "graph"
         stack: "true"
         fill: 10
         format: "decbytes"
@@ -272,7 +266,6 @@ grafana_dashboards_grafonnet:
         includeAll: "false"
     panels:
       - name: "Disk util % on $instance"
-        type: "graph"
         stack: "false"
         fill: 0
         format: "percent"
@@ -304,7 +297,6 @@ grafana_dashboards_grafonnet:
         includeAll: "false"
     panels:
       - name: "Connection tracking entries on $instance"
-        type: "graph"
         stack: "false"
         fill: 0
         format: "short"
