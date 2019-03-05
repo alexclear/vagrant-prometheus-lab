@@ -186,7 +186,10 @@ grafana_dashboards_grafonnet:
         gridpos_w: 24
         gridpos_h: 15
         decimals: 2
-        alias_colors: '{ "Total": "rgb(219, 18, 42)", "Swap total": "rgb(0, 25, 255)", "Swap used": "light-purple" }'
+        alias_colors:
+          "Total": "rgb(219, 18, 42)"
+          "Swap total": "rgb(0, 25, 255)"
+          "Swap used": "light-purple"
         targets:
           - expr: 'node_memory_Buffers_bytes{instance="$instance"}'
             legend_format: !unsafe "Buffers"
@@ -233,7 +236,9 @@ grafana_dashboards_grafonnet:
         decimals: 2
         min: 0
         max: 100
-        alias_colors: '{ "sda": "#70dbed", "sdb": "#bf1b00" }'
+        alias_colors:
+          sda: "#70dbed"
+          sdb: "#bf1b00"
         targets:
           - expr: 'irate(node_disk_io_time_seconds_total{instance="$instance"}[5m])*100'
             legend_format: !unsafe "{{device}}"
@@ -258,7 +263,8 @@ grafana_dashboards_grafonnet:
         gridpos_h: 10
         decimals: 2
         min: 0
-        alias_colors: '{ "Nr. of entries": "#e5a8e2" }'
+        alias_colors:
+          "Nr. of entries": "#e5a8e2"
         linewidth: 2
         targets:
           - expr: 'node_nf_conntrack_entries{instance="$instance"}'
