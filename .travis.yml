@@ -1,0 +1,10 @@
+---
+language: python
+python: "2.7"
+
+before_install:
+  - sudo apt-get update -qq
+install:
+  - sudo pip install ansible-lint
+script:
+  - ansible-lint -v ./ansible/site.yml
