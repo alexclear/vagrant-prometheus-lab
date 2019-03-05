@@ -97,7 +97,6 @@ grafana_dashboards_grafonnet:
         min: 0
         max: "null"
         alias_colors: "{}"
-        linewidth: 1
         targets:
           - expr: "sum by (instance)(irate(nginx_http_requests_total[5m]))"
             legend_format: !unsafe "{{instance}}"
@@ -116,7 +115,6 @@ grafana_dashboards_grafonnet:
         min: 0
         max: "null"
         alias_colors: "{}"
-        linewidth: 1
         targets:
           - expr: 'sum by (instance)(irate(nginx_http_requests_total{instance="$instance"}[5m]))'
             legend_format: !unsafe "{{status}}"
@@ -135,7 +133,6 @@ grafana_dashboards_grafonnet:
         min: 0
         max: "null"
         alias_colors: "{}"
-        linewidth: 1
         targets:
           - expr: 'sum by (status)(irate(nginx_http_requests_total{instance="$instance"}[5m]))'
             legend_format: !unsafe "{{status}}"
@@ -154,7 +151,6 @@ grafana_dashboards_grafonnet:
         min: 0
         max: "null"
         alias_colors: "{}"
-        linewidth: 1
         targets:
           - expr: 'sum by (host)(irate(nginx_http_requests_total{instance="$instance"}[5m]))'
             legend_format: !unsafe "{{host}}"
@@ -185,7 +181,6 @@ grafana_dashboards_grafonnet:
         min: 0
         max: "105"
         alias_colors: "{}"
-        linewidth: 1
         targets:
           - expr: '(avg by (mode)(irate(node_cpu_seconds_total{instance="$instance"}[5m])))*100'
             legend_format: !unsafe "{{mode}}"
@@ -216,7 +211,6 @@ grafana_dashboards_grafonnet:
         min: "null"
         max: "null"
         alias_colors: '{ "Total": "rgb(219, 18, 42)", "Swap total": "rgb(0, 25, 255)", "Swap used": "light-purple" }'
-        linewidth: 1
         targets:
           - expr: 'node_memory_Buffers_bytes{instance="$instance"}'
             legend_format: !unsafe "Buffers"
@@ -278,7 +272,6 @@ grafana_dashboards_grafonnet:
         min: 0
         max: 100
         alias_colors: '{ "sda": "#70dbed", "sdb": "#bf1b00" }'
-        linewidth: 1
         targets:
           - expr: 'irate(node_disk_io_time_seconds_total{instance="$instance"}[5m])*100'
             legend_format: !unsafe "{{device}}"
