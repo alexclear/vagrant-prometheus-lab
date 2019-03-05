@@ -260,7 +260,6 @@ grafana_dashboards_grafonnet:
         includeAll: "false"
     panels:
       - name: "Disk util % on $instance"
-        stack: "false"
         fill: 0
         format: "percent"
         span: 6
@@ -290,7 +289,6 @@ grafana_dashboards_grafonnet:
         includeAll: "false"
     panels:
       - name: "Connection tracking entries on $instance"
-        stack: "false"
         fill: 0
         format: "short"
         span: 6
