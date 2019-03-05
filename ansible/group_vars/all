@@ -98,7 +98,6 @@ grafana_dashboards_grafonnet:
         targets:
           - expr: "sum by (instance)(irate(nginx_http_requests_total[5m]))"
             legend_format: !unsafe "{{instance}}"
-            format: 'time_series'
             interval_factor: 2
       - name: "Reqs rate (total on $instance)"
         stack: "true"
@@ -115,7 +114,6 @@ grafana_dashboards_grafonnet:
         targets:
           - expr: 'sum by (instance)(irate(nginx_http_requests_total{instance="$instance"}[5m]))'
             legend_format: !unsafe "{{status}}"
-            format: 'time_series'
             interval_factor: 2
       - name: "Reqs rate (by status on $instance)"
         stack: "true"
@@ -132,7 +130,6 @@ grafana_dashboards_grafonnet:
         targets:
           - expr: 'sum by (status)(irate(nginx_http_requests_total{instance="$instance"}[5m]))'
             legend_format: !unsafe "{{status}}"
-            format: 'time_series'
             interval_factor: 2
       - name: "Reqs rate (by host on $instance)"
         stack: "true"
@@ -149,7 +146,6 @@ grafana_dashboards_grafonnet:
         targets:
           - expr: 'sum by (host)(irate(nginx_http_requests_total{instance="$instance"}[5m]))'
             legend_format: !unsafe "{{host}}"
-            format: 'time_series'
             interval_factor: 2
   - file_name: cpu
     dashboard_name: CPU
@@ -178,7 +174,6 @@ grafana_dashboards_grafonnet:
         targets:
           - expr: '(avg by (mode)(irate(node_cpu_seconds_total{instance="$instance"}[5m])))*100'
             legend_format: !unsafe "{{mode}}"
-            format: 'time_series'
             interval_factor: 2
   - file_name: memory
     dashboard_name: Memory
@@ -205,27 +200,21 @@ grafana_dashboards_grafonnet:
         targets:
           - expr: 'node_memory_Buffers_bytes{instance="$instance"}'
             legend_format: !unsafe "Buffers"
-            format: 'time_series'
             interval_factor: 2
           - expr: 'node_memory_Cached_bytes{instance="$instance"}'
             legend_format: !unsafe "Cached"
-            format: 'time_series'
             interval_factor: 2
           - expr: 'node_memory_MemFree_bytes{instance="$instance"}'
             legend_format: !unsafe "Free"
-            format: 'time_series'
             interval_factor: 2
           - expr: 'node_memory_MemTotal_bytes{instance="$instance"}'
             legend_format: !unsafe "Total"
-            format: 'time_series'
             interval_factor: 2
           - expr: '-(node_memory_SwapTotal_bytes{instance="$instance"})'
             legend_format: !unsafe "Swap total"
-            format: 'time_series'
             interval_factor: 2
           - expr: 'node_memory_SwapFree_bytes{instance="$instance"} - node_memory_SwapTotal_bytes{instance="$instance"}'
             legend_format: !unsafe "Swap used"
-            format: 'time_series'
             interval_factor: 2
         series_overrides:
           "Total":
@@ -264,7 +253,6 @@ grafana_dashboards_grafonnet:
         targets:
           - expr: 'irate(node_disk_io_time_seconds_total{instance="$instance"}[5m])*100'
             legend_format: !unsafe "{{device}}"
-            format: 'time_series'
             interval_factor: 2
   - file_name: conntrack
     dashboard_name: "Connection tracking"
@@ -292,7 +280,6 @@ grafana_dashboards_grafonnet:
         targets:
           - expr: 'node_nf_conntrack_entries{instance="$instance"}'
             legend_format: !unsafe "Nr. of entries"
-            format: 'time_series'
             interval_factor: 2
 grafana_dashboards_heatmaps:
   - file_name: nginxlat
