@@ -94,11 +94,9 @@ grafana_dashboards_grafonnet:
         gridpos_h: 10
         decimals: 2
         min: 0
-        alias_colors: "{}"
         targets:
           - expr: "sum by (instance)(irate(nginx_http_requests_total[5m]))"
             legend_format: !unsafe "{{instance}}"
-            interval_factor: 2
       - name: "Reqs rate (total on $instance)"
         stack: "true"
         fill: 1
@@ -110,11 +108,9 @@ grafana_dashboards_grafonnet:
         gridpos_h: 10
         decimals: 2
         min: 0
-        alias_colors: "{}"
         targets:
           - expr: 'sum by (instance)(irate(nginx_http_requests_total{instance="$instance"}[5m]))'
             legend_format: !unsafe "{{status}}"
-            interval_factor: 2
       - name: "Reqs rate (by status on $instance)"
         stack: "true"
         fill: 10
@@ -126,11 +122,9 @@ grafana_dashboards_grafonnet:
         gridpos_h: 10
         decimals: 2
         min: 0
-        alias_colors: "{}"
         targets:
           - expr: 'sum by (status)(irate(nginx_http_requests_total{instance="$instance"}[5m]))'
             legend_format: !unsafe "{{status}}"
-            interval_factor: 2
       - name: "Reqs rate (by host on $instance)"
         stack: "true"
         fill: 10
@@ -142,11 +136,9 @@ grafana_dashboards_grafonnet:
         gridpos_h: 10
         decimals: 2
         min: 0
-        alias_colors: "{}"
         targets:
           - expr: 'sum by (host)(irate(nginx_http_requests_total{instance="$instance"}[5m]))'
             legend_format: !unsafe "{{host}}"
-            interval_factor: 2
   - file_name: cpu
     dashboard_name: CPU
     time_from: "now-3h"
@@ -170,11 +162,9 @@ grafana_dashboards_grafonnet:
         decimals: 2
         min: 0
         max: "105"
-        alias_colors: "{}"
         targets:
           - expr: '(avg by (mode)(irate(node_cpu_seconds_total{instance="$instance"}[5m])))*100'
             legend_format: !unsafe "{{mode}}"
-            interval_factor: 2
   - file_name: memory
     dashboard_name: Memory
     time_from: "now-3h"
@@ -200,22 +190,16 @@ grafana_dashboards_grafonnet:
         targets:
           - expr: 'node_memory_Buffers_bytes{instance="$instance"}'
             legend_format: !unsafe "Buffers"
-            interval_factor: 2
           - expr: 'node_memory_Cached_bytes{instance="$instance"}'
             legend_format: !unsafe "Cached"
-            interval_factor: 2
           - expr: 'node_memory_MemFree_bytes{instance="$instance"}'
             legend_format: !unsafe "Free"
-            interval_factor: 2
           - expr: 'node_memory_MemTotal_bytes{instance="$instance"}'
             legend_format: !unsafe "Total"
-            interval_factor: 2
           - expr: '-(node_memory_SwapTotal_bytes{instance="$instance"})'
             legend_format: !unsafe "Swap total"
-            interval_factor: 2
           - expr: 'node_memory_SwapFree_bytes{instance="$instance"} - node_memory_SwapTotal_bytes{instance="$instance"}'
             legend_format: !unsafe "Swap used"
-            interval_factor: 2
         series_overrides:
           "Total":
             fill: 0
@@ -253,7 +237,6 @@ grafana_dashboards_grafonnet:
         targets:
           - expr: 'irate(node_disk_io_time_seconds_total{instance="$instance"}[5m])*100'
             legend_format: !unsafe "{{device}}"
-            interval_factor: 2
   - file_name: conntrack
     dashboard_name: "Connection tracking"
     time_from: "now-3h"
@@ -280,7 +263,6 @@ grafana_dashboards_grafonnet:
         targets:
           - expr: 'node_nf_conntrack_entries{instance="$instance"}'
             legend_format: !unsafe "Nr. of entries"
-            interval_factor: 2
 grafana_dashboards_heatmaps:
   - file_name: nginxlat
     dashboard_name: "Nginx latencies"
