@@ -75,7 +75,6 @@ grafana_dashboards_grafonnet:
   - file_name: dashboard
     dashboard_name: Nginx
     time_from: "now-3h"
-    refresh: "30s"
     tags:
       - nginx
     templates:
@@ -159,7 +158,6 @@ grafana_dashboards_grafonnet:
   - file_name: cpu
     dashboard_name: CPU
     time_from: "now-3h"
-    refresh: "30s"
     tags:
       - hosts
     templates:
@@ -189,7 +187,6 @@ grafana_dashboards_grafonnet:
   - file_name: memory
     dashboard_name: Memory
     time_from: "now-3h"
-    refresh: "30s"
     tags:
       - hosts
     templates:
@@ -250,7 +247,6 @@ grafana_dashboards_grafonnet:
   - file_name: diskutil
     dashboard_name: "Disk util %"
     time_from: "now-3h"
-    refresh: "30s"
     tags:
       - hosts
     templates:
@@ -279,7 +275,6 @@ grafana_dashboards_grafonnet:
   - file_name: conntrack
     dashboard_name: "Connection tracking"
     time_from: "now-3h"
-    refresh: "30s"
     tags:
       - hosts
     templates:
@@ -342,7 +337,6 @@ grafana_dashboards_heatmaps:
   - file_name: bioinstancedevices
     dashboard_name: "Block I/O latencies by instance and device"
     time_from: "now-3h"
-    refresh: "30s"
     tags:
       - hosts
     templates:
