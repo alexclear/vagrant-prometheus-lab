@@ -38,6 +38,7 @@ nginx_extra_http_options: |
           metric_requests:inc(1, {ngx.var.server_name, ngx.var.status})
           metric_latency:observe(tonumber(ngx.var.request_time), {ngx.var.server_name})
         ';
+
 prometheus_jobs:
   - name: nodesebpf
     metrics_path: "/metrics"
@@ -71,6 +72,7 @@ prometheus_jobs:
     targets:
       - host: 172.16.137.2
         port: 9323
+
 grafana_dashboards_grafonnet:
   - file_name: dashboard
     dashboard_name: Nginx
@@ -269,6 +271,7 @@ grafana_dashboards_grafonnet:
         targets:
           - expr: 'node_nf_conntrack_entries{instance="$instance"}'
             legend_format: !unsafe "Nr. of entries"
+
 grafana_dashboards_heatmaps:
   - file_name: nginxlat
     dashboard_name: "Nginx latencies"
