@@ -28,3 +28,9 @@
 [submodule "ansible/roles/bcc-tools"]
 	path = ansible/roles/bcc-tools
 	url = https://github.com/kofonfor/ansible-role-bcc-tools.git
+[submodule "ansible/roles/prometheus-container"]
+	path = ansible/roles/prometheus-container
+	url = https://github.com/kofonfor/ansible-role-prometheus-container.git
+[submodule "ansible/roles/prometheus-node-exporter"]
+	path = ansible/roles/prometheus-node-exporter
+	url = https://github.com/kofonfor/ansible-role-prometheus-node-exporter.git

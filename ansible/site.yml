@@ -2,7 +2,7 @@
   become: yes
   roles:
   - role: common-utils
-  - role: prometheus/node_exporter
+  - role: prometheus-node-exporter
   - role: prometheus/ebpf_exporter
 
 - hosts: all
@@ -44,5 +44,5 @@
   become: yes
   roles:
   - role: docker-io
-  - role: prometheus/prometheus-container
+  - role: prometheus-container
   - role: grafana-container
