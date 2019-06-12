@@ -1,4 +1,4 @@
-- hosts: node-exporters
+- hosts: node_exporters
   become: yes
   roles:
   - role: common-utils
@@ -35,12 +35,12 @@
                   ';
               }
 
-- hosts: prom-alertmanagers
+- hosts: prom_alertmanagers
   become: yes
   roles:
   - role: prometheus/alertmanager
 
-- hosts: prom-server
+- hosts: prom_server
   become: yes
   roles:
   - role: docker-io

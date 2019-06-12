@@ -85,6 +85,7 @@ Vagrant.configure("2") do |config|
     end
 
     prom3.vm.provider :libvirt do |v, override|
+      config.vm.synced_folder ".", "/vagrant", type: "nfs"
       ANSIBLE_RAW_SSH_ARGS << " -o IdentityFile=./.vagrant/machines/prom1/libvirt/private_key "
       ANSIBLE_RAW_SSH_ARGS << " -o IdentityFile=./.vagrant/machines/prom2/libvirt/private_key "
       ANSIBLE_RAW_SSH_ARGS << " -o IdentityFile=./.vagrant/machines/prom3/libvirt/private_key "
