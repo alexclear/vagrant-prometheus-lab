@@ -37,6 +37,8 @@ Vagrant.configure("2") do |config|
     end
 
     prom1.vm.provision "shell", inline: "apt-get install -y python"
+    prom1.vm.provision "shell", inline: "sysctl net.ipv6.conf.all.disable_ipv6=1"
+    prom1.vm.provision "shell", inline: "sysctl net.ipv6.conf.default.disable_ipv6=1"
   end
 
   config.vm.define "prom2" do |prom2|
@@ -62,6 +64,8 @@ Vagrant.configure("2") do |config|
     end
 
     prom2.vm.provision "shell", inline: "apt-get install -y python"
+    prom2.vm.provision "shell", inline: "sysctl net.ipv6.conf.all.disable_ipv6=1"
+    prom2.vm.provision "shell", inline: "sysctl net.ipv6.conf.default.disable_ipv6=1"
   end
 
   config.vm.define "prom3" do |prom3|
@@ -93,6 +97,8 @@ Vagrant.configure("2") do |config|
     end
 
     prom3.vm.provision "shell", inline: "apt-get install -y python"
+    prom3.vm.provision "shell", inline: "sysctl net.ipv6.conf.all.disable_ipv6=1"
+    prom3.vm.provision "shell", inline: "sysctl net.ipv6.conf.default.disable_ipv6=1"
     prom3.vm.provision "ansible" do |ansible|
       ansible.playbook = "ansible/site.yml"
       ansible.config_file = "ansible/ansible.cfg"
