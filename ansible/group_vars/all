@@ -1,3 +1,6 @@
+prometheus_remote_writes:
+  - url: "http://172.16.137.3:8428/api/v1/write"
+    queue_config_max_samples_per_send: 10000
 victoriametrics_container_host_address: 0.0.0.0
 apt_key_url: "https://download.docker.com/linux/ubuntu/gpg"
 alertmanagers_group_name: "prom_alertmanagers"
@@ -17,7 +20,8 @@ nginx_lua_prometheus: True
 grafana_admin_user: test
 grafana_admin_password: ooZ6ukei
 grafana_enable_internal_metrics: True
-grafana_prometheus_address: 172.16.137.2
+grafana_prometheus_address: 172.16.137.3
+grafana_prometheus_port: 8428
 grafana_auto_prometheus_config: True
 grafana_auto_dashboards_config: True
 nginx_package_name: "nginx-extras"
