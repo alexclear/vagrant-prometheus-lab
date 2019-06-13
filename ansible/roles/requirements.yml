@@ -23,3 +23,9 @@
 - src: https://github.com/kofonfor/ansible-role-prometheus-container.git
   version: 5bff3f2742fc465ea63ca08e26aeff2ead305f09
   name: prometheus-container
+- src: https://github.com/kofonfor/ansible-role-bcc-tools.git
+  version: 1ca55f23938ea09de11709262c1412c259ceae84
+  name: bcc-tools
+- src: https://github.com/kofonfor/ansible-role-nginx.git
+  version: ac5130afbc28b114a2769253ee873d3e8ee5e7b0
+  name: nginx
