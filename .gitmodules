@@ -1,30 +1,9 @@
 [submodule "ansible/roles/prometheus"]
 	path = ansible/roles/prometheus
 	url = https://github.com/kofonfor/ansible-role-prometheus.git
-[submodule "ansible/roles/runit"]
-	path = ansible/roles/runit
-	url = https://github.com/kofonfor/ansible-role-runit.git
-[submodule "ansible/roles/docker-io"]
-	path = ansible/roles/docker-io
-	url = https://github.com/kofonfor/ansible-role-docker-io.git
-[submodule "ansible/roles/docker.ubuntu"]
-	path = ansible/roles/docker.ubuntu
-	url = https://github.com/angstwad/docker.ubuntu.git
-[submodule "ansible/roles/grafana-container"]
-	path = ansible/roles/grafana-container
-	url = https://github.com/kofonfor/ansible-role-grafana-container.git
 [submodule "ansible/roles/nginx"]
 	path = ansible/roles/nginx
 	url = https://github.com/kofonfor/ansible-role-nginx.git
-[submodule "ansible/roles/common-utils"]
-	path = ansible/roles/common-utils
-	url = https://github.com/kofonfor/ansible-role-common-utils.git
-[submodule "ansible/roles/andrewrothstein.docker"]
-	path = ansible/roles/andrewrothstein.docker
-	url = https://github.com/andrewrothstein/ansible-docker.git
 [submodule "ansible/roles/bcc-tools"]
 	path = ansible/roles/bcc-tools
 	url = https://github.com/kofonfor/ansible-role-bcc-tools.git
-[submodule "ansible/roles/prometheus-container"]
-	path = ansible/roles/prometheus-container
-	url = https://github.com/kofonfor/ansible-role-prometheus-container.git

@@ -5,3 +5,21 @@
 - src: https://github.com/kofonfor/ansible-role-prometheus-node-exporter.git
   version: df01c2a4bda0ed8408e6da2d5d3d46506f2a4ffc
   name: prometheus-node-exporter
+- src: https://github.com/kofonfor/ansible-role-runit.git
+  version: 34f21d178111d5f9706d209d9ed267e0430d873d
+  name: runit
+- src: https://github.com/kofonfor/ansible-role-docker-io.git
+  version: 998b6771fa2527eed2111db62487c2757a145e2a
+  name: docker-io
+- src: https://github.com/angstwad/docker.ubuntu.git
+  version: e57e367aec0476edf0c9f047c00a148c04cb008c
+  name: docker.ubuntu
+- src: https://github.com/kofonfor/ansible-role-grafana-container.git
+  version: 8c30e47b72dcb2caa623b2eab181bea4d61f2695
+  name: grafana-container
+- src: https://github.com/kofonfor/ansible-role-common-utils.git
+  version: 176f25b6875b4816c078283501c6f6c746c77b23
+  name: common-utils
+- src: https://github.com/kofonfor/ansible-role-prometheus-container.git
+  version: 5bff3f2742fc465ea63ca08e26aeff2ead305f09
+  name: prometheus-container
