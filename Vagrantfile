@@ -11,8 +11,6 @@ $PROM1_MEM_MBS = 2048
 $PROM2_MEM_MBS = 2048
 $PROM3_MEM_MBS = 2048
 
-ANSIBLE_RAW_SSH_ARGS = []
-
 Vagrant.configure("2") do |config|
   config.vm.define "prom1" do |prom1|
     prom1.vm.box = "generic/ubuntu1804"
@@ -74,9 +72,6 @@ Vagrant.configure("2") do |config|
     prom3.vm.network "private_network", ip: $PROM3_IP
 
     prom3.vm.provider :virtualbox do |v, override|
-      ANSIBLE_RAW_SSH_ARGS << " -o IdentityFile=./.vagrant/machines/prom1/virtualbox/private_key "
-      ANSIBLE_RAW_SSH_ARGS << " -o IdentityFile=./.vagrant/machines/prom2/virtualbox/private_key "
-      ANSIBLE_RAW_SSH_ARGS << " -o IdentityFile=./.vagrant/machines/prom3/virtualbox/private_key "
       v.gui = false
       v.customize ["modifyvm", :id, "--cpus", $PROM3_NUM_CPUS]
       v.customize ["modifyvm", :id, "--memory", $PROM3_MEM_MBS]
@@ -86,9 +81,6 @@ Vagrant.configure("2") do |config|
 
     prom3.vm.provider :libvirt do |v, override|
       config.vm.synced_folder ".", "/vagrant", type: "nfs"
-      ANSIBLE_RAW_SSH_ARGS << " -o IdentityFile=./.vagrant/machines/prom1/libvirt/private_key "
-      ANSIBLE_RAW_SSH_ARGS << " -o IdentityFile=./.vagrant/machines/prom2/libvirt/private_key "
-      ANSIBLE_RAW_SSH_ARGS << " -o IdentityFile=./.vagrant/machines/prom3/libvirt/private_key "
       v.cpu_mode = 'custom'
       v.cpu_model = 'kvm64'
       v.volume_cache = 'writeback'
