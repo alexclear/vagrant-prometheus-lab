@@ -35,3 +35,6 @@
 - src: https://github.com/kofonfor/ansible-role-prometheus-alertmanager.git
   version: ace96c044f39fad6c46eaabda8bbb4ddd42896d4
   name: prometheus-alertmanager
+- src: https://github.com/kofonfor/ansible-role-victoriametrics-single-container.git
+  version: eeb187d16436c8e21bfc16cb926cfb82ccdf42b4
+  name: victoriametrics-single-container

@@ -5,6 +5,24 @@
   - role: prometheus-node-exporter
   - role: prometheus-ebpf-exporter
 
+- hosts: prom_alertmanagers
+  become: yes
+  roles:
+  - role: prometheus-alertmanager
+
+- hosts: victoriametrics_servers
+  become: yes
+  roles:
+  - role: docker-io
+  - role: victoriametrics-single-container
+
+- hosts: prom_server
+  become: yes
+  roles:
+  - role: docker-io
+  - role: prometheus-container
+  - role: grafana-container
+
 - hosts: all
   become: yes
   tasks:
@@ -34,15 +52,3 @@
                     prometheus:collect()
                   ';
               }
-
-- hosts: prom_alertmanagers
-  become: yes
-  roles:
-  - role: prometheus-alertmanager
-
-- hosts: prom_server
-  become: yes
-  roles:
-  - role: docker-io
-  - role: prometheus-container
-  - role: grafana-container

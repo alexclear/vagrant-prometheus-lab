@@ -14,3 +14,7 @@ prom3
 
 [prom_server]
 prom1
+
+[victoriametrics_servers]
+prom2
+prom3
