@@ -1,3 +1,0 @@
-[submodule "ansible/roles/prometheus"]
-	path = ansible/roles/prometheus
-	url = https://github.com/kofonfor/ansible-role-prometheus.git

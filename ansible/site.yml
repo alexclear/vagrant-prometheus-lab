@@ -3,7 +3,7 @@
   roles:
   - role: common-utils
   - role: prometheus-node-exporter
-  - role: prometheus/ebpf_exporter
+  - role: prometheus-ebpf-exporter
 
 - hosts: all
   become: yes
@@ -38,7 +38,7 @@
 - hosts: prom_alertmanagers
   become: yes
   roles:
-  - role: prometheus/alertmanager
+  - role: prometheus-alertmanager
 
 - hosts: prom_server
   become: yes
