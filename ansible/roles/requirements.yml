@@ -1,1 +1,7 @@
 - src: geerlingguy.nginx
+- src: https://github.com/kofonfor/ansible-role-systemd-service-unit.git
+  version: 4d32bd217ce6cfa1bbefa1aef2a47938f7147677
+  name: systemd-service-unit
+- src: https://github.com/kofonfor/ansible-role-prometheus-node-exporter.git
+  version: df01c2a4bda0ed8408e6da2d5d3d46506f2a4ffc
+  name: prometheus-node-exporter
