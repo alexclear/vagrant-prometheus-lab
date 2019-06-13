@@ -100,13 +100,15 @@ Vagrant.configure("2") do |config|
     prom3.vm.provision "shell", inline: "apt-get install -y python"
     prom3.vm.provision "shell", inline: "sysctl net.ipv6.conf.all.disable_ipv6=1"
     prom3.vm.provision "shell", inline: "sysctl net.ipv6.conf.default.disable_ipv6=1"
-    prom3.vm.provision "ansible" do |ansible|
+    prom3.vm.provision "ansible_local" do |ansible|
       ansible.playbook = "ansible/site.yml"
       ansible.config_file = "ansible/ansible.cfg"
       ansible.inventory_path = "ansible/inventory"
       ansible.become = true
+      ansible.galaxy_role_file = "ansible/roles/requirements.yml"
+      ansible.galaxy_roles_path = "/etc/ansible/roles"
+      ansible.galaxy_command = "sudo ansible-galaxy install --role-file=%{role_file} --roles-path=%{roles_path} --force"
       ansible.limit = "all"
-      ansible.raw_ssh_args = ANSIBLE_RAW_SSH_ARGS
     end
   end
 end
