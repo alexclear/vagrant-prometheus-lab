@@ -26,9 +26,6 @@
 - src: https://github.com/kofonfor/ansible-role-bcc-tools.git
   version: 1ca55f23938ea09de11709262c1412c259ceae84
   name: bcc-tools
-- src: https://github.com/kofonfor/ansible-role-nginx.git
-  version: ac5130afbc28b114a2769253ee873d3e8ee5e7b0
-  name: nginx
 - src: https://github.com/kofonfor/ansible-role-prometheus-ebpf-exporter.git
   version: 0833a2c67cdbfa6e0c730bc2e8eb94bed3af5e8a
   name: prometheus-ebpf-exporter
