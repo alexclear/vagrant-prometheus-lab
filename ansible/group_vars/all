@@ -17,6 +17,7 @@ install_kernel_extras_dio: False
 ext_prometheus_data_volume: /var/lib/docker-extvols/prometheus/data
 ext_prometheus_config_volume: /var/lib/docker-extvols/prometheus/config
 nginx_lua_prometheus: True
+grafana_anon_access_enabled: True
 grafana_admin_user: test
 grafana_admin_password: ooZ6ukei
 grafana_enable_internal_metrics: True
