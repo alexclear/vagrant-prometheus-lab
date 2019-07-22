@@ -15,7 +15,7 @@
   version: e57e367aec0476edf0c9f047c00a148c04cb008c
   name: docker.ubuntu
 - src: https://github.com/kofonfor/ansible-role-grafana-container.git
-  version: 8c30e47b72dcb2caa623b2eab181bea4d61f2695
+  version: 9adfe78a9d3b5be57b82d1ebedb0431b6a26c0c9
   name: grafana-container
 - src: https://github.com/kofonfor/ansible-role-common-utils.git
   version: 176f25b6875b4816c078283501c6f6c746c77b23
