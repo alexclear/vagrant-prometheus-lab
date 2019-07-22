@@ -19,6 +19,7 @@ ext_prometheus_config_volume: /var/lib/docker-extvols/prometheus/config
 nginx_lua_prometheus: True
 grafana_anon_access_enabled: True
 grafana_admin_user: test
+grafana_default_dashboard_slug: cpu
 grafana_admin_password: ooZ6ukei
 grafana_enable_internal_metrics: True
 grafana_prometheus_address: 172.16.137.3
