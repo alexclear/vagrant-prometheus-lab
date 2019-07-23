@@ -278,6 +278,31 @@ grafana_dashboards_grafonnet:
         targets:
           - expr: 'node_nf_conntrack_entries{instance="$instance"}'
             legend_format: !unsafe "Nr. of entries"
+  - file_name: nginxlatinstances
+    dashboard_name: "Nginx latencies by instance"
+    time_from: "now-3h"
+    tags:
+      - nginx
+    templates:
+      - name: "instance"
+        query: "label_values(nginx_http_request_duration_seconds_bucket, instance)"
+        label: "Instance"
+        includeAll: "false"
+    panels:
+      - name: "Nginx response latencies"
+        type: "heatmap"
+        card_color: "#5759e0"
+        decimals: "null"
+        format: "short"
+        gridpos_x: 0
+        gridpos_y: 0
+        gridpos_w: 24
+        gridpos_h: 14
+        targets:
+          - expr: 'sum by (le)(rate(nginx_http_request_duration_seconds_bucket{instance=\"$instance\"}[5m]))'
+            format: "heatmap"
+            interval_factor: 1
+            legend_format: !unsafe "{{le}}"
 
 grafana_dashboards_heatmaps:
   - file_name: nginxlat
@@ -293,24 +318,6 @@ grafana_dashboards_heatmaps:
         format: "short"
         targets:
           - expr: 'sum by (le)(rate(nginx_http_request_duration_seconds_bucket[5m]))'
-            legend_format: !unsafe "{{le}}"
-  - file_name: nginxlatinstances
-    dashboard_name: "Nginx latencies by instance"
-    time_from: "now-3h"
-    tags:
-      - nginx
-    templates:
-      - name: "instance"
-        query: "label_values(nginx_http_request_duration_seconds_bucket, instance)"
-        label: "Instance"
-        includeAll: "false"
-    panels:
-      - name: "Nginx response latencies"
-        card_color: "#5759e0"
-        decimals: "null"
-        format: "short"
-        targets:
-          - expr: 'sum by (le)(rate(nginx_http_request_duration_seconds_bucket{instance=\"$instance\"}[5m]))'
             legend_format: !unsafe "{{le}}"
   - file_name: bioinstancedevices
     dashboard_name: "Block I/O latencies by instance and device"
