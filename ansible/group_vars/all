@@ -299,12 +299,10 @@ grafana_dashboards_grafonnet:
         gridpos_w: 24
         gridpos_h: 14
         targets:
-          - expr: 'sum by (le)(rate(nginx_http_request_duration_seconds_bucket{instance=\"$instance\"}[5m]))'
+          - expr: 'sum by (le)(rate(nginx_http_request_duration_seconds_bucket{instance="$instance"}[5m]))'
             format: "heatmap"
             interval_factor: 1
             legend_format: !unsafe "{{le}}"
-
-grafana_dashboards_heatmaps:
   - file_name: nginxlat
     dashboard_name: "Nginx latencies"
     time_from: "now-3h"
@@ -313,11 +311,18 @@ grafana_dashboards_heatmaps:
     templates: []
     panels:
       - name: "Nginx response latencies"
+        type: "heatmap"
         card_color: "#d683ce"
         decimals: "null"
         format: "short"
+        gridpos_x: 0
+        gridpos_y: 0
+        gridpos_w: 24
+        gridpos_h: 14
         targets:
           - expr: 'sum by (le)(rate(nginx_http_request_duration_seconds_bucket[5m]))'
+            format: "heatmap"
+            interval_factor: 1
             legend_format: !unsafe "{{le}}"
   - file_name: bioinstancedevices
     dashboard_name: "Block I/O latencies by instance and device"
@@ -330,14 +335,21 @@ grafana_dashboards_heatmaps:
         label: "Instance"
         includeAll: "false"
       - name: "device"
-        query: 'label_values(ebpf_exporter_bio_latency_seconds_bucket{instance=\"$instance\"}, device)'
+        query: 'label_values(ebpf_exporter_bio_latency_seconds_bucket{instance="$instance"}, device)'
         label: "Device"
         includeAll: "false"
     panels:
       - name: "Block I/O latencies on ($instance, $device)"
+        type: "heatmap"
         card_color: "#fcf82d"
         format: "s"
         decimals: "1"
+        gridpos_x: 0
+        gridpos_y: 0
+        gridpos_w: 24
+        gridpos_h: 14
         targets:
-          - expr: 'sum by (le)(rate(ebpf_exporter_bio_latency_seconds_bucket{instance=\"$instance\",device=\"$device\"}[5m]))'
+          - expr: 'sum by (le)(rate(ebpf_exporter_bio_latency_seconds_bucket{instance="$instance",device="$device"}[5m]))'
+            format: "heatmap"
+            interval_factor: 1
             legend_format: !unsafe "{{le}}"
