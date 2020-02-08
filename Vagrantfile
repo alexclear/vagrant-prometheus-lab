@@ -1,9 +1,9 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-$PROM1_IP = "172.16.137.2"
-$PROM2_IP = "172.16.137.3"
-$PROM3_IP = "172.16.137.4"
+$PROM1_IP = "172.16.197.2"
+$PROM2_IP = "172.16.197.3"
+$PROM3_IP = "172.16.197.4"
 $PROM1_NUM_CPUS = 2
 $PROM2_NUM_CPUS = 2
 $PROM3_NUM_CPUS = 2
@@ -72,6 +72,7 @@ Vagrant.configure("2") do |config|
     prom3.vm.network "private_network", ip: $PROM3_IP
 
     prom3.vm.provider :virtualbox do |v, override|
+      override.vm.synced_folder ".", "/vagrant"
       v.gui = false
       v.customize ["modifyvm", :id, "--cpus", $PROM3_NUM_CPUS]
       v.customize ["modifyvm", :id, "--memory", $PROM3_MEM_MBS]
@@ -80,7 +81,7 @@ Vagrant.configure("2") do |config|
     end
 
     prom3.vm.provider :libvirt do |v, override|
-      config.vm.synced_folder ".", "/vagrant", type: "nfs"
+      override.vm.synced_folder ".", "/vagrant", type: "nfs"
       v.cpu_mode = 'custom'
       v.cpu_model = 'kvm64'
       v.volume_cache = 'writeback'
