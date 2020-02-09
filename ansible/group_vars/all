@@ -1,5 +1,5 @@
 prometheus_remote_writes:
-  - url: "http://172.16.137.3:8428/api/v1/write"
+  - url: "http://172.16.197.3:8428/api/v1/write"
     queue_config_max_samples_per_send: 10000
 victoriametrics_container_host_address: 0.0.0.0
 apt_key_url: "https://download.docker.com/linux/ubuntu/gpg"
@@ -22,7 +22,7 @@ grafana_admin_user: test
 grafana_default_dashboard_slug: cpu
 grafana_admin_password: ooZ6ukei
 grafana_enable_internal_metrics: True
-grafana_prometheus_address: 172.16.137.3
+grafana_prometheus_address: 172.16.197.3
 grafana_prometheus_port: 8428
 grafana_auto_prometheus_config: True
 grafana_auto_dashboards_config: True
@@ -53,306 +53,36 @@ prometheus_jobs:
   - name: nodesebpf
     metrics_path: "/metrics"
     targets:
-      - host: 172.16.137.2
+      - host: 172.16.197.2
         port: 9435
-      - host: 172.16.137.3
+      - host: 172.16.197.3
         port: 9435
-      - host: 172.16.137.4
+      - host: 172.16.197.4
         port: 9435
   - name: nodes
     metrics_path: "/metrics"
     targets:
-      - host: 172.16.137.2
+      - host: 172.16.197.2
         port: 9100
-      - host: 172.16.137.3
+      - host: 172.16.197.3
         port: 9100
-      - host: 172.16.137.4
+      - host: 172.16.197.4
         port: 9100
   - name: nginxes
     metrics_path: "/metrics"
     targets:
-      - host: 172.16.137.2
+      - host: 172.16.197.2
         port: 9145
-      - host: 172.16.137.3
+      - host: 172.16.197.3
         port: 9145
-      - host: 172.16.137.4
+      - host: 172.16.197.4
         port: 9145
   - name: docker
     metrics_path: "/metrics"
     targets:
-      - host: 172.16.137.2
+      - host: 172.16.197.2
         port: 9323
 
 grafana_dashboards_grafonnet:
-  - file_name: dashboard
-    dashboard_name: Nginx
-    time_from: "now-3h"
-    tags:
-      - nginx
-    templates:
-      - name: "instance"
-        query: "label_values(nginx_http_requests_total, instance)"
-        label: "Instance"
-        includeAll: "false"
-    panels:
-      - name: "Reqs rate (on all instances)"
-        stack: "true"
-        fill: 8
-        format: "short"
-        span: 6
-        gridpos_x: 0
-        gridpos_y: 0
-        gridpos_w: 12
-        gridpos_h: 10
-        decimals: 2
-        min: 0
-        targets:
-          - expr: "sum by (instance)(irate(nginx_http_requests_total[5m]))"
-            legend_format: !unsafe "{{instance}}"
-      - name: "Reqs rate (total on $instance)"
-        stack: "true"
-        fill: 1
-        format: "short"
-        span: 6
-        gridpos_x: 12
-        gridpos_y: 0
-        gridpos_w: 12
-        gridpos_h: 10
-        decimals: 2
-        min: 0
-        targets:
-          - expr: 'sum by (instance)(irate(nginx_http_requests_total{instance="$instance"}[5m]))'
-            legend_format: !unsafe "{{status}}"
-      - name: "Reqs rate (by status on $instance)"
-        stack: "true"
-        fill: 10
-        format: "short"
-        span: 6
-        gridpos_x: 0
-        gridpos_y: 0
-        gridpos_w: 12
-        gridpos_h: 10
-        decimals: 2
-        min: 0
-        targets:
-          - expr: 'sum by (status)(irate(nginx_http_requests_total{instance="$instance"}[5m]))'
-            legend_format: !unsafe "{{status}}"
-      - name: "Reqs rate (by host on $instance)"
-        stack: "true"
-        fill: 10
-        format: "short"
-        span: 6
-        gridpos_x: 12
-        gridpos_y: 0
-        gridpos_w: 12
-        gridpos_h: 10
-        decimals: 2
-        min: 0
-        targets:
-          - expr: 'sum by (host)(irate(nginx_http_requests_total{instance="$instance"}[5m]))'
-            legend_format: !unsafe "{{host}}"
-  - file_name: cpu
-    dashboard_name: CPU
-    time_from: "now-3h"
-    tags:
-      - hosts
-    templates:
-      - name: "instance"
-        query: "label_values(node_cpu_seconds_total, instance)"
-        label: "Instance"
-        includeAll: "false"
-    panels:
-      - name: "CPU util % on $instance"
-        stack: "true"
-        fill: 10
-        format: "percent"
-        span: 6
-        gridpos_x: 0
-        gridpos_y: 0
-        gridpos_w: 24
-        gridpos_h: 15
-        decimals: 2
-        min: 0
-        max: "105"
-        targets:
-          - expr: '(avg by (mode)(irate(node_cpu_seconds_total{instance="$instance"}[5m])))*100'
-            legend_format: !unsafe "{{mode}}"
-  - file_name: memory
-    dashboard_name: Memory
-    time_from: "now-3h"
-    tags:
-      - hosts
-    templates:
-      - name: "instance"
-        query: "label_values(node_memory_MemFree_bytes, instance)"
-        label: "Instance"
-        includeAll: "false"
-    panels:
-      - name: "Memory utilization on $instance"
-        stack: "true"
-        fill: 10
-        format: "decbytes"
-        span: 6
-        gridpos_x: 0
-        gridpos_y: 0
-        gridpos_w: 24
-        gridpos_h: 15
-        decimals: 2
-        alias_colors:
-          "Total": "rgb(219, 18, 42)"
-          "Swap total": "rgb(0, 25, 255)"
-          "Swap used": "light-purple"
-        targets:
-          - expr: 'node_memory_Buffers_bytes{instance="$instance"}'
-            legend_format: !unsafe "Buffers"
-          - expr: 'node_memory_Cached_bytes{instance="$instance"}'
-            legend_format: !unsafe "Cached"
-          - expr: 'node_memory_MemFree_bytes{instance="$instance"}'
-            legend_format: !unsafe "Free"
-          - expr: 'node_memory_MemTotal_bytes{instance="$instance"}'
-            legend_format: !unsafe "Total"
-          - expr: '-(node_memory_SwapTotal_bytes{instance="$instance"})'
-            legend_format: !unsafe "Swap total"
-          - expr: 'node_memory_SwapFree_bytes{instance="$instance"} - node_memory_SwapTotal_bytes{instance="$instance"}'
-            legend_format: !unsafe "Swap used"
-        series_overrides:
-          "Total":
-            fill: 0
-            linewidth: 2
-            stack: "false"
-          "Swap total":
-            fill: 0
-            linewidth: 2
-            stack: "false"
-          "Swap used":
-            stack: "false"
-  - file_name: diskutil
-    dashboard_name: "Disk util %"
-    time_from: "now-3h"
-    tags:
-      - hosts
-    templates:
-      - name: "instance"
-        query: "label_values(node_disk_io_time_seconds_total, instance)"
-        label: "Instance"
-        includeAll: "false"
-    panels:
-      - name: "Disk util % on $instance"
-        fill: 0
-        format: "percent"
-        span: 6
-        gridpos_x: 0
-        gridpos_y: 0
-        gridpos_w: 24
-        gridpos_h: 10
-        decimals: 2
-        min: 0
-        max: 100
-        alias_colors:
-          sda: "#70dbed"
-          sdb: "#bf1b00"
-        targets:
-          - expr: 'irate(node_disk_io_time_seconds_total{instance="$instance"}[5m])*100'
-            legend_format: !unsafe "{{device}}"
-  - file_name: conntrack
-    dashboard_name: "Connection tracking"
-    time_from: "now-3h"
-    tags:
-      - hosts
-    templates:
-      - name: "instance"
-        query: "label_values(node_nf_conntrack_entries, instance)"
-        label: "Instance"
-        includeAll: "false"
-    panels:
-      - name: "Connection tracking entries on $instance"
-        fill: 0
-        format: "short"
-        span: 6
-        gridpos_x: 0
-        gridpos_y: 0
-        gridpos_w: 24
-        gridpos_h: 10
-        decimals: 2
-        min: 0
-        alias_colors:
-          "Nr. of entries": "#e5a8e2"
-        linewidth: 2
-        targets:
-          - expr: 'node_nf_conntrack_entries{instance="$instance"}'
-            legend_format: !unsafe "Nr. of entries"
-  - file_name: nginxlatinstances
-    dashboard_name: "Nginx latencies by instance"
-    time_from: "now-3h"
-    tags:
-      - nginx
-    templates:
-      - name: "instance"
-        query: "label_values(nginx_http_request_duration_seconds_bucket, instance)"
-        label: "Instance"
-        includeAll: "false"
-    panels:
-      - name: "Nginx response latencies"
-        type: "heatmap"
-        card_color: "#5759e0"
-        decimals: "null"
-        format: "short"
-        gridpos_x: 0
-        gridpos_y: 0
-        gridpos_w: 24
-        gridpos_h: 14
-        targets:
-          - expr: 'sum by (le)(rate(nginx_http_request_duration_seconds_bucket{instance="$instance"}[5m]))'
-            format: "heatmap"
-            interval_factor: 1
-            legend_format: !unsafe "{{le}}"
-  - file_name: nginxlat
-    dashboard_name: "Nginx latencies"
-    time_from: "now-3h"
-    tags:
-      - nginx
-    templates: []
-    panels:
-      - name: "Nginx response latencies"
-        type: "heatmap"
-        card_color: "#d683ce"
-        decimals: "null"
-        format: "short"
-        gridpos_x: 0
-        gridpos_y: 0
-        gridpos_w: 24
-        gridpos_h: 14
-        targets:
-          - expr: 'sum by (le)(rate(nginx_http_request_duration_seconds_bucket[5m]))'
-            format: "heatmap"
-            interval_factor: 1
-            legend_format: !unsafe "{{le}}"
-  - file_name: bioinstancedevices
-    dashboard_name: "Block I/O latencies by instance and device"
-    time_from: "now-3h"
-    tags:
-      - hosts
-    templates:
-      - name: "instance"
-        query: "label_values(ebpf_exporter_bio_latency_seconds_bucket, instance)"
-        label: "Instance"
-        includeAll: "false"
-      - name: "device"
-        query: 'label_values(ebpf_exporter_bio_latency_seconds_bucket{instance="$instance"}, device)'
-        label: "Device"
-        includeAll: "false"
-    panels:
-      - name: "Block I/O latencies on ($instance, $device)"
-        type: "heatmap"
-        card_color: "#fcf82d"
-        format: "s"
-        decimals: "1"
-        gridpos_x: 0
-        gridpos_y: 0
-        gridpos_w: 24
-        gridpos_h: 14
-        targets:
-          - expr: 'sum by (le)(rate(ebpf_exporter_bio_latency_seconds_bucket{instance="$instance",device="$device"}[5m]))'
-            format: "heatmap"
-            interval_factor: 1
-            legend_format: !unsafe "{{le}}"
+  - grafana_node_dashboards_grafonnet
+  - grafana_nginx_dashboards_grafonnet

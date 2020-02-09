@@ -15,7 +15,7 @@
   version: e57e367aec0476edf0c9f047c00a148c04cb008c
   name: docker.ubuntu
 - src: https://github.com/kofonfor/ansible-role-grafana-container.git
-  version: d0ed6ef2d46ba261b237a290375b67c0c34d9dd5
+  version: 252d29d16ef84cbb76c52191d853817c156ccf68
   name: grafana-container
 - src: https://github.com/kofonfor/ansible-role-common-utils.git
   version: 176f25b6875b4816c078283501c6f6c746c77b23
@@ -35,3 +35,9 @@
 - src: https://github.com/kofonfor/ansible-role-victoriametrics-single-container.git
   version: eeb187d16436c8e21bfc16cb926cfb82ccdf42b4
   name: victoriametrics-single-container
+- src: https://github.com/kofonfor/ansible-role-grafana-node-dashboards.git
+  version: f5138b97c1282fb1bd09724f9435273f6c4cda15
+  name: grafana-node-dashboards
+- src: https://github.com/kofonfor/ansible-role-grafana-nginx-dashboards.git
+  version: 93354392d0123e1da89d5c35c0f9dcd4eeadf92c
+  name: grafana-nginx-dashboards

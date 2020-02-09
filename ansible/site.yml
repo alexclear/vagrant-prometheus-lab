@@ -21,6 +21,8 @@
   roles:
   - role: docker-io
   - role: prometheus-container
+  - role: grafana-node-dashboards
+  - role: grafana-nginx-dashboards
   - role: grafana-container
 
 - hosts: all
