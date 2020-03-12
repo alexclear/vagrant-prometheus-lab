@@ -36,7 +36,7 @@
   version: eeb187d16436c8e21bfc16cb926cfb82ccdf42b4
   name: victoriametrics-single-container
 - src: https://github.com/kofonfor/ansible-role-grafana-node-dashboards.git
-  version: f5138b97c1282fb1bd09724f9435273f6c4cda15
+  version: eb11bdae00a3eeab242706c3da4f1b47449dd694
   name: grafana-node-dashboards
 - src: https://github.com/kofonfor/ansible-role-grafana-nginx-dashboards.git
   version: 93354392d0123e1da89d5c35c0f9dcd4eeadf92c
