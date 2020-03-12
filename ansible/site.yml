@@ -3,6 +3,7 @@
   roles:
   - role: common-utils
   - role: prometheus-node-exporter
+  - role: docker-io
   - role: prometheus-ebpf-exporter
 
 - hosts: prom_alertmanagers
