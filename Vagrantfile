@@ -100,7 +100,7 @@ Vagrant.configure("2") do |config|
 
     prom3.vm.provider :hyperv do |v, override|
       prom3.vm.network "public_network", bridge: "Default Switch"
-      override.vm.synced_folder ".", "/vagrant", type: "smb"
+      override.vm.synced_folder ".", "/vagrant", type: "smb", smb_username: ENV["SMB_USERNAME"], smb_password: ENV["SMB_PASSWORD"]
     end
 
     prom3.vm.provision "shell", inline: "cp /vagrant/.vagrant/machines/prom3/hyperv/private_key /home/vagrant/private_key_prom3 && cp /vagrant/.vagrant/machines/prom2/hyperv/private_key /home/vagrant/private_key_prom2 && cp /vagrant/.vagrant/machines/prom1/hyperv/private_key /home/vagrant/private_key_prom1 && chmod 600 /home/vagrant/private_key* && chown vagrant:vagrant /home/vagrant/private_key* && ls -alF /home/vagrant/private_key*"
