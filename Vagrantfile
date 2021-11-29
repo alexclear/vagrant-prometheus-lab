@@ -17,6 +17,10 @@ Vagrant.configure("2") do |config|
     prom1.vm.hostname = "prom1"
     prom1.vm.network "private_network", ip: $PROM1_IP
 
+    prom1.vm.provider :hyperv do |v, override|
+      prom1.vm.network "public_network", bridge: "Ext bridge Ethernet"
+    end
+
     prom1.vm.provider :virtualbox do |v, override|
       v.gui = false
       v.customize ["modifyvm", :id, "--cpus", $PROM1_NUM_CPUS]
@@ -43,6 +47,10 @@ Vagrant.configure("2") do |config|
     prom2.vm.box = "generic/ubuntu1804"
     prom2.vm.hostname = "prom2"
     prom2.vm.network "private_network", ip: $PROM2_IP
+
+    prom2.vm.provider :hyperv do |v, override|
+      prom2.vm.network "public_network", bridge: "Ext bridge Ethernet"
+    end
 
     prom2.vm.provider :virtualbox do |v, override|
       v.gui = false
@@ -91,6 +99,7 @@ Vagrant.configure("2") do |config|
     end
 
     prom3.vm.provider :hyperv do |v, override|
+      prom3.vm.network "public_network", bridge: "Ext bridge Ethernet"
       override.vm.synced_folder ".", "/vagrant", type: "smb"
     end
 
