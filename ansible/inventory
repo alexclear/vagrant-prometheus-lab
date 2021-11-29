@@ -1,6 +1,6 @@
-prom1 ansible_ssh_private_key_file=/root/private_key_prom1 docker_prom_metrics_ip=172.16.197.2
-prom2 ansible_ssh_private_key_file=/root/private_key_prom2
-prom3 ansible_ssh_private_key_file=/root/private_key_prom3
+prom1 ansible_ssh_private_key_file=/home/vagrant/private_key_prom1 docker_prom_metrics_ip=172.16.197.2
+prom2 ansible_ssh_private_key_file=/home/vagrant/private_key_prom2
+prom3 ansible_ssh_private_key_file=/home/vagrant/private_key_prom3
 
 [node_exporters]
 prom1
