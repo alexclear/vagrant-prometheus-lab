@@ -1,9 +1,6 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-$PROM1_IP = "172.16.197.2"
-$PROM2_IP = "172.16.197.3"
-$PROM3_IP = "172.16.197.4"
 $PROM1_NUM_CPUS = 2
 $PROM2_NUM_CPUS = 2
 $PROM3_NUM_CPUS = 2
@@ -12,14 +9,15 @@ $PROM2_MEM_MBS = 2048
 $PROM3_MEM_MBS = 2048
 
 Vagrant.configure("2") do |config|
+  config.hostmanager.enabled = true
+  config.hostmanager.manage_host = false
+  config.hostmanager.manage_guest = true
+  config.hostmanager.ignore_private_ip = false
+  config.hostmanager.include_offline = true
+
   config.vm.define "prom1" do |prom1|
     prom1.vm.box = "generic/ubuntu1804"
     prom1.vm.hostname = "prom1"
-    prom1.vm.network "private_network", ip: $PROM1_IP
-
-    prom1.vm.provider :hyperv do |v, override|
-      prom1.vm.network "public_network", bridge: "Ext bridge Ethernet"
-    end
 
     prom1.vm.provider :virtualbox do |v, override|
       v.gui = false
@@ -38,6 +36,10 @@ Vagrant.configure("2") do |config|
       v.memory = $PROM1_MEM_MBS
     end
 
+    prom1.vm.provider :hyperv do |v, override|
+      prom1.vm.network "public_network", bridge: "Default Switch"
+    end
+
     prom1.vm.provision "shell", inline: "apt-get install -y python"
     prom1.vm.provision "shell", inline: "sysctl net.ipv6.conf.all.disable_ipv6=1"
     prom1.vm.provision "shell", inline: "sysctl net.ipv6.conf.default.disable_ipv6=1"
@@ -46,11 +48,6 @@ Vagrant.configure("2") do |config|
   config.vm.define "prom2" do |prom2|
     prom2.vm.box = "generic/ubuntu1804"
     prom2.vm.hostname = "prom2"
-    prom2.vm.network "private_network", ip: $PROM2_IP
-
-    prom2.vm.provider :hyperv do |v, override|
-      prom2.vm.network "public_network", bridge: "Ext bridge Ethernet"
-    end
 
     prom2.vm.provider :virtualbox do |v, override|
       v.gui = false
@@ -69,6 +66,10 @@ Vagrant.configure("2") do |config|
       v.memory = $PROM2_MEM_MBS
     end
 
+    prom2.vm.provider :hyperv do |v, override|
+      prom2.vm.network "public_network", bridge: "Default Switch"
+    end
+
     prom2.vm.provision "shell", inline: "apt-get install -y python"
     prom2.vm.provision "shell", inline: "sysctl net.ipv6.conf.all.disable_ipv6=1"
     prom2.vm.provision "shell", inline: "sysctl net.ipv6.conf.default.disable_ipv6=1"
@@ -77,7 +78,6 @@ Vagrant.configure("2") do |config|
   config.vm.define "prom3" do |prom3|
     prom3.vm.box = "generic/ubuntu1804"
     prom3.vm.hostname = "prom3"
-    prom3.vm.network "private_network", ip: $PROM3_IP
 
     prom3.vm.provider :virtualbox do |v, override|
       override.vm.synced_folder ".", "/vagrant"
@@ -99,7 +99,7 @@ Vagrant.configure("2") do |config|
     end
 
     prom3.vm.provider :hyperv do |v, override|
-      prom3.vm.network "public_network", bridge: "Ext bridge Ethernet"
+      prom3.vm.network "public_network", bridge: "Default Switch"
       override.vm.synced_folder ".", "/vagrant", type: "smb"
     end
 
