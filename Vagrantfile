@@ -90,6 +90,10 @@ Vagrant.configure("2") do |config|
       v.memory = $PROM3_MEM_MBS
     end
 
+    prom3.vm.provider :hyperv do |v, override|
+      override.vm.synced_folder ".", "/vagrant", type: "smb"
+    end
+
     prom3.vm.provision "shell", inline: "apt-get install -y python"
     prom3.vm.provision "shell", inline: "sysctl net.ipv6.conf.all.disable_ipv6=1"
     prom3.vm.provision "shell", inline: "sysctl net.ipv6.conf.default.disable_ipv6=1"
