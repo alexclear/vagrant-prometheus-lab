@@ -106,7 +106,7 @@ Vagrant.configure("2") do |config|
     prom3.vm.provision "file", source: ".vagrant/machines/prom3/hyperv/private_key", destination: "/tmp/private_key_prom3"
     prom3.vm.provision "file", source: ".vagrant/machines/prom2/hyperv/private_key", destination: "/tmp/private_key_prom2"
     prom3.vm.provision "file", source: ".vagrant/machines/prom1/hyperv/private_key", destination: "/tmp/private_key_prom1"
-    prom3.vm.provision "shell", inline: "cp /tmp/private_key* /home/vagrant/ && chmod 600 /home/vagrant/private_key* && chown vagrant:vagrant /home/vagrant/private_key* ls -alF /home/vagrant/private_key*"
+    prom3.vm.provision "shell", inline: "cp /tmp/private_key* /home/vagrant/ && chmod 600 /home/vagrant/private_key* && chown vagrant:vagrant /home/vagrant/private_key* && ls -alF /home/vagrant/private_key*"
     prom3.vm.provision "shell", inline: "apt-get install -y python"
     prom3.vm.provision "shell", inline: "sysctl net.ipv6.conf.all.disable_ipv6=1"
     prom3.vm.provision "shell", inline: "sysctl net.ipv6.conf.default.disable_ipv6=1"
